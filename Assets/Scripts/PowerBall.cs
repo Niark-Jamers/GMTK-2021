@@ -49,7 +49,6 @@ public class PowerBall : MonoBehaviour
         // c *= camera.orthographicSize;
         c = c * 2 - 1 * Vector2.one;
         c = camera.projectionMatrix.inverse.MultiplyPoint(c);
-        Debug.Log(c);
         // c = camera.ViewportToWorldPoint(c);
         // c = c + 0.5f * Vector2.one;
         // c *= camera.orthographicSize;
