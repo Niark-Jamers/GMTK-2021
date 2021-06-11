@@ -330,59 +330,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1819776523 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2480476664486032141, guid: 05a834dc29e4e18468ff75f902b5d7c1,
-    type: 3}
-  m_PrefabInstance: {fileID: 2480476663744455942}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1819776524
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819776523}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 7
---- !u!61 &1819776525
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1819776523}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!1 &1983681936
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +454,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: m_UpscaleRT
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: m_PixelSnapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: orthographic size
+      value: 2.8125
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.width
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
+        type: 3}
+      propertyPath: m_NormalizedViewPortRect.height
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2196471515107623499, guid: 1935bb21c390e90409040d3a64621fa3,
         type: 3}
       propertyPath: m_RootOrder
@@ -705,17 +687,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2480476664486032136, guid: 05a834dc29e4e18468ff75f902b5d7c1,
-        type: 3}
-      propertyPath: bullet
-      value: 
-      objectReference: {fileID: 1124802163566534960, guid: cd5a860ace987404a9320e5b4dd25850,
-        type: 3}
-    - target: {fileID: 2480476664486032136, guid: 05a834dc29e4e18468ff75f902b5d7c1,
-        type: 3}
-      propertyPath: bulletSpeed
-      value: 500
-      objectReference: {fileID: 0}
     - target: {fileID: 2480476664486032139, guid: 05a834dc29e4e18468ff75f902b5d7c1,
         type: 3}
       propertyPath: m_RootOrder
@@ -916,6 +887,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
         type: 3}
+    - target: {fileID: 4611986293236396982, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
+        type: 3}
+      propertyPath: max
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4611986293236396982, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
+        type: 3}
+      propertyPath: min
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4611986293236396982, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
         type: 3}
       propertyPath: speed
