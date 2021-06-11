@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    void Start()
+    public static GameManager Instance { get; private set; }
+    private void Awake()
     {
-        
+        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+        DontDestroyOnLoad(this);
     }
 
     void Update()
