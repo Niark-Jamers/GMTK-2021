@@ -30,6 +30,6 @@ public class Bullet : MonoBehaviour
 
     void ActivateFire()
     {
-
+        
     }
 }
