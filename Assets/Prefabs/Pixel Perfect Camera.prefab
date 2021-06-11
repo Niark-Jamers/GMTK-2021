@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2196471515107623496}
   m_Layer: 0
   m_Name: Pixel Perfect Camera
-  m_TagString: Untagged
+  m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c88f5cead0c0b2a4eb05b5900433f8d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_AssetsPPU: 32
+  m_AssetsPPU: 17
   m_RefResolutionX: 320
   m_RefResolutionY: 180
   m_UpscaleRT: 1

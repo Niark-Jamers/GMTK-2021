@@ -26,8 +26,13 @@ public class PowerBall : MonoBehaviour
         // if (Input.GetKey(KeyCode.LeftArrow))
         //     angle -= angleSpeed;
 
+        // Trackball:
         // transform.position = player.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
 
-        transform.position += new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"), 0) * speed * Time.deltaTime;
+        // Cancer control:
+        // transform.position += new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"), 0) * speed * Time.deltaTime;
+
+        var p = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = new Vector3(p.x, p.y, transform.position.z);
     }
 }
