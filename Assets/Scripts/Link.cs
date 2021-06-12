@@ -22,11 +22,54 @@ public class Link : MonoBehaviour
     GameObject player;
 
     LineRenderer line;
+
+    public GameObject bulletPrefab;
+    public float speed = 2f;
+    public float multiShotStep = 15;
+
+    [System.Serializable]
+    public struct power
+    {
+        [SerializeField]
+        public Bullet.modifier bMod;
+        public int multiShot;
+    }
+
+    [SerializeField]
+    public power p = new power();
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
         // line = GetComponent<LineRenderer>();
+    }
+
+    Bullet.modifier SetMods(Bullet.modifier tmod)
+    {
+        tmod.laser = (tmod.laser) ? tmod.laser : p.bMod.laser;
+        tmod.fire = (tmod.fire) ? tmod.fire : p.bMod.fire;
+        tmod.ice = (tmod.ice) ? tmod.ice : p.bMod.ice;
+        tmod.zigzag = (tmod.zigzag) ? tmod.zigzag : p.bMod.zigzag;
+        tmod.explosion = (tmod.explosion) ? tmod.explosion : p.bMod.explosion;
+        tmod.bounce = (tmod.bounce) ? tmod.bounce : p.bMod.bounce;
+
+        return tmod;
+    }
+
+    void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
+    {
+        Vector2 baseDir = Quaternion.Euler(0, 0, (-multiShotStep * p.multiShot) / 2) * dir.normalized;
+        // Debug.DrawRay(c.point, baseDir, Color.blue, 1f);
+        for (int i = 0; i <= p.multiShot; i++)
+        {
+            Vector2 tmp = Quaternion.Euler(0, 0, multiShotStep * i) * baseDir;
+            GameObject g = Instantiate(bulletPrefab, c.point, Quaternion.Euler(0, 0, 0));
+            Bullet b = g.GetComponent<Bullet>();
+            b.rb = g.GetComponent<Rigidbody2D>();
+            b.noMulti = true;
+            b.resetValue(tmp, SetMods(tmod));
+            //Debug.DrawRay(c.point, tmp, Color.blue, 1f);
+        }
     }
 
     void Update()
@@ -73,7 +116,8 @@ public class Link : MonoBehaviour
                     {
                         overHeating = false;
                     }
-                } else
+                }
+                else
                 {
                     curHeat -= Mathf.Clamp(Time.deltaTime * heatSpeed, 0, 100);
                 }
@@ -84,14 +128,30 @@ public class Link : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Bullet")
+        if (col.gameObject.tag == "EnemyBullet")
         {
             if (!linkActive)
             {
                 GameManager.Instance.ReloadLevel();
             }
+            col.gameObject.tag = "PlayerBullet";
             var r = col.gameObject.GetComponent<Rigidbody2D>();
-            r.velocity = -col.contacts[0].normal * r.velocity.magnitude * multiplier;
+            Vector2 velocity = -col.contacts[0].normal * speed;
+            Bullet tb = col.gameObject.GetComponent<Bullet>();
+            Bullet.modifier tmod = tb.mod;
+
+            if (tb.noMulti == false)
+            {
+                if (p.multiShot > 0)
+                {
+                    MoultiShotage(velocity, col.contacts[0], tmod);
+                    Destroy(col.gameObject);
+                }
+                else
+                {
+                    col.gameObject.GetComponent<Bullet>().resetValue(velocity, SetMods(tmod));
+                }
+            }
         }
     }
 
@@ -100,7 +160,8 @@ public class Link : MonoBehaviour
         if (value)
         {
             spriteMaterial.SetColor("_Color", new Color(15f, 15f, 15f));
-        } else
+        }
+        else
         {
             spriteMaterial.SetColor("_Color", new Color(5, 5, 5));
         }

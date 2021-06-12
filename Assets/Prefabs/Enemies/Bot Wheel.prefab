@@ -1,0 +1,77 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &6805811445086312337
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1352871270986061688, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 59f9e70033c4872438ea0bbacbf03635,
+        type: 2}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871271670212134, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_Name
+      value: Bot Wheel
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4fc4069f953f9c0428b963cdd4a932b2, type: 3}
