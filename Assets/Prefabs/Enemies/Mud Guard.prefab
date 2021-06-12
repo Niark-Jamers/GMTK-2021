@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6805811445086312337
+--- !u!1001 &6173251166066662440
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,38 +11,23 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 22100000, guid: 59f9e70033c4872438ea0bbacbf03635,
+      objectReference: {fileID: 22100000, guid: 3ef084bb72301684aa16bbef133f47c0,
         type: 2}
     - target: {fileID: 1352871270986061692, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_Radius
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352871270986061694, guid: 4fc4069f953f9c0428b963cdd4a932b2,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.39
       objectReference: {fileID: 0}
     - target: {fileID: 1352871270986061695, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 4522395010558116628, guid: ae2118eb9a9dd0d42b0ae1dbdc5ca4be,
+      objectReference: {fileID: 8793639957104055765, guid: 92fb82a4db7908f45bfadabd2344ed60,
         type: 3}
     - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1352871271670212133, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
@@ -97,7 +82,7 @@ PrefabInstance:
     - target: {fileID: 1352871271670212134, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_Name
-      value: Bot Wheel
+      value: Mud Guard
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fc4069f953f9c0428b963cdd4a932b2, type: 3}
