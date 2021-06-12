@@ -13,6 +13,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: f0dea215023cd6340a7c7dde7117dcf4,
         type: 2}
+    - target: {fileID: 1352871270986061693, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: fireDelay
+      value: 100000000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1352871270986061694, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1352871270986061695, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_Sprite

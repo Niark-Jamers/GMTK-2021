@@ -27,6 +27,8 @@ public class Link : MonoBehaviour
     public float speed = 2f;
     public float multiShotStep = 15;
 
+    bool dead = false;
+
     [System.Serializable]
     public struct power
     {
@@ -116,11 +118,14 @@ public class Link : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
+        if (dead)
+            return;
+
         if (col.gameObject.tag == "EnemyBullet")
         {
             if (!linkActive)
             {
-                GameManager.Instance.ReloadLevel();
+                StartCoroutine(Death());
             }
             col.gameObject.tag = "PlayerBullet";
             var r = col.gameObject.GetComponent<Rigidbody2D>();
@@ -139,6 +144,17 @@ public class Link : MonoBehaviour
                     col.gameObject.GetComponent<Bullet>().resetOnhit(velocity);
             }
         }
+    }
+
+    IEnumerator Death()
+    {
+        dead = true;
+
+        player.GetComponent<Player>().Die();
+
+        yield return new WaitForSeconds(2f);
+
+        GameManager.Instance.ReloadLevel();
     }
 
     void EnableLink(bool value)
