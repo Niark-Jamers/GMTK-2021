@@ -61,7 +61,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2848584519356891888}
-  m_LocalRotation: {x: -0, y: -0, z: 0.35270444, w: 0.9357348}
+  m_LocalRotation: {x: 0, y: 0, z: 0.35270444, w: 0.9357348}
   m_LocalPosition: {x: 1.123116, y: 0.6513181, z: -0.06467236}
   m_LocalScale: {x: 2.095341, y: 0.2, z: 0.2}
   m_Children: []
@@ -89,6 +89,19 @@ MonoBehaviour:
   overheatSpeed: 25
   selfSprite: {fileID: 2597981657189896920}
   spriteMaterial: {fileID: 2100000, guid: 743da9fca7c1218498cb72e411450266, type: 2}
+  bulletPrefab: {fileID: 1124802163566534960, guid: cd5a860ace987404a9320e5b4dd25850,
+    type: 3}
+  speed: 2
+  multiShotStep: 15
+  p:
+    bMod:
+      laser: 0
+      fire: 0
+      ice: 0
+      zigzag: 0
+      explosion: 0
+      bounce: 0
+    multiShot: 2
 --- !u!120 &7410997015094048520
 LineRenderer:
   m_ObjectHideFlags: 0
