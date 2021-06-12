@@ -8,9 +8,10 @@ public class Bullet : MonoBehaviour
     Rigidbody2D rb;
     SpriteRenderer sr;
 
-    public GameObject firePS;
-    public GameObject icePS;
-    public GameObject boomPS;
+    public GameObject fire;
+    public GameObject ice;
+    public GameObject boom;
+    ParticleSystem boomps;
 
     List<Color> colorList = new List<Color>();
 
@@ -54,21 +55,29 @@ public class Bullet : MonoBehaviour
         bounceAltTimer = bounceTimer / 2;
         zzAltTimer = zzTimer / 2;
         zzDir = Vector3.Cross(direction, (zzGoRight)? Vector3.forward : Vector3.back).normalized;
+        ActivateModifier();
     }
 
-    void ActivateFire()
+    void ActivateFire(bool t)
     {
-        firePS.SetActive(true);
+        fire.SetActive(t);
     }
 
-    void ActivateIce()
+    void ActivateIce(bool t)
     {
-        icePS.SetActive(true);
+        ice.SetActive(t);
     }
 
-    void ActivateBoom()
+    void ActivateBoom(bool t)
     {
-        boomPS.SetActive(true);
+        boom.SetActive(t);
+                boomps = boom.GetComponent<ParticleSystem>();
+
+    }
+
+    void playBoom()
+    {
+        boomps.Play();
     }
 
     void ZigZag()
@@ -84,6 +93,15 @@ public class Bullet : MonoBehaviour
         rb.AddForce(zzDir * zzStr);
     }
 
+    public void resetOnhit(Vector3 dir)
+    {
+        direction = dir;
+        zzDir = Vector3.Cross(direction, (zzGoRight)? Vector3.forward : Vector3.back).normalized;
+        
+        zzAltTimer = zzTimer / 2;
+
+    }
+
     void Bounce()
     {
         bounceAltTimer += Time.deltaTime;
@@ -97,16 +115,17 @@ public class Bullet : MonoBehaviour
 
     public void ActivateModifier()
     {
-        if (mod.fire)
-            ActivateFire();
-        if (mod.ice)
-            ActivateIce();
+        ActivateFire(mod.fire);
+        ActivateIce(mod.ice);
+        ActivateBoom(mod.explosion);
     }
 
     private void Update()
     {
         if (mod.bounce)
             Bounce();
+            Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
+            Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
     }
 
     private void FixedUpdate() {
@@ -116,5 +135,19 @@ public class Bullet : MonoBehaviour
 
     private void OnValidate() {
         ActivateModifier();
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if (mod.explosion)
+        {
+            playBoom();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (mod.explosion)
+        {
+            playBoom();
+        }
     }
 }

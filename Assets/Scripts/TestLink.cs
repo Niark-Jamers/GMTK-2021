@@ -15,7 +15,7 @@ public class TestLink : MonoBehaviour
             var r = col.gameObject.GetComponent<Rigidbody2D>();
             Debug.DrawLine(col.contacts[0].point, col.contacts[0].point -col.contacts[0].normal, Color.red, 1f);
             r.velocity = -col.contacts[0].normal;
-            col.gameObject.GetComponent<Bullet>().direction = r.velocity;
+            col.gameObject.GetComponent<Bullet>().resetOnhit(r.velocity);
         }
     }
 }
