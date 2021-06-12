@@ -31,7 +31,7 @@ public class Link : MonoBehaviour
     public struct power
     {
         [SerializeField]
-        Bullet.modifier bMod;
+        public Bullet.modifier bMod;
         public int multiShot;
     }
 
@@ -44,6 +44,18 @@ public class Link : MonoBehaviour
         // line = GetComponent<LineRenderer>();
     }
 
+    Bullet.modifier SetMods(Bullet.modifier tmod)
+    {
+        tmod.laser = (tmod.laser) ? tmod.laser : p.bMod.laser;
+        tmod.fire = (tmod.fire) ? tmod.fire : p.bMod.fire;
+        tmod.ice = (tmod.ice) ? tmod.ice : p.bMod.ice;
+        tmod.zigzag = (tmod.zigzag) ? tmod.zigzag : p.bMod.zigzag;
+        tmod.explosion = (tmod.explosion) ? tmod.explosion : p.bMod.explosion;
+        tmod.bounce = (tmod.bounce) ? tmod.bounce : p.bMod.bounce;
+
+        return tmod;
+    }
+
     void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
     {
         Vector2 baseDir = Quaternion.Euler(0, 0, (-multiShotStep * p.multiShot) / 2) * dir.normalized;
@@ -54,8 +66,8 @@ public class Link : MonoBehaviour
             GameObject g = Instantiate(bulletPrefab, c.point, Quaternion.Euler(0, 0, 0));
             Bullet b = g.GetComponent<Bullet>();
             b.rb = g.GetComponent<Rigidbody2D>();
-            b.resetOnhit(tmp);
             b.noMulti = true;
+            b.resetValue(tmp, SetMods(tmod));
             //Debug.DrawRay(c.point, tmp, Color.blue, 1f);
         }
     }
@@ -126,17 +138,19 @@ public class Link : MonoBehaviour
             var r = col.gameObject.GetComponent<Rigidbody2D>();
             Vector2 velocity = -col.contacts[0].normal * speed;
             Bullet tb = col.gameObject.GetComponent<Bullet>();
+            Bullet.modifier tmod = tb.mod;
 
             if (tb.noMulti == false)
             {
                 if (p.multiShot > 0)
                 {
-                    Bullet.modifier tmod = tb.mod;
                     MoultiShotage(velocity, col.contacts[0], tmod);
                     Destroy(col.gameObject);
                 }
                 else
-                    col.gameObject.GetComponent<Bullet>().resetOnhit(velocity);
+                {
+                    col.gameObject.GetComponent<Bullet>().resetValue(velocity, SetMods(tmod));
+                }
             }
         }
     }

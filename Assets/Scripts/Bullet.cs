@@ -13,7 +13,9 @@ public class Bullet : MonoBehaviour
     public GameObject fire;
     public GameObject ice;
     public GameObject boom;
+    public GameObject laser;
     ParticleSystem boomps;
+    ParticleSystem laserps;
 
     List<Color> colorList = new List<Color>();
 
@@ -46,10 +48,16 @@ public class Bullet : MonoBehaviour
     public float zzTimer = 1f;
     float zzAltTimer = 0;
 
-    [Header("ZIGZAG")]
+    [Header("MULTI")]
     public bool noMulti;
     public float multiTimer = 1f;
     float multiAltTimer = 0;
+
+    [Header("LASER")]
+    public float laserSpeed = 20;
+
+
+    bool collided = false;
 
     // Start is called before the first frame update
     void Start()
@@ -74,6 +82,26 @@ public class Bullet : MonoBehaviour
     void ActivateIce(bool t)
     {
         ice.SetActive(t);
+    }
+
+    void ActivateLaser(bool t)
+    {
+        laser.SetActive(t);
+        laserps = laser.GetComponent<ParticleSystem>();
+        direction = direction * laserSpeed;
+        rb.velocity = direction;
+        ParticleSystem.VelocityOverLifetimeModule tmp = laserps.velocityOverLifetime;
+        tmp.x = direction.x;
+        tmp.y = direction.y;
+        laserps.Play();
+    }
+
+    void PauseLaser()
+    {
+        laserps.Stop();
+        ParticleSystem.VelocityOverLifetimeModule tmp = laserps.velocityOverLifetime;
+        tmp.x = 0;
+        tmp.y = 0;
     }
 
     void ActivateBoom(bool t)
@@ -101,12 +129,29 @@ public class Bullet : MonoBehaviour
         rb.velocity = (direction + (Vector2)zzDir * zzStr);
     }
 
-    public void resetOnhit(Vector3 dir)
+    public void resetValue(Vector3 dir)
     {
         rb.velocity = dir;
         direction = dir;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;
+    }
+
+    public void resetValue(Vector3 dir, modifier tmod)
+    {
+        rb.velocity = dir;
+        direction = dir;
+        zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
+        zzAltTimer = zzTimer / 2;
+        mod = tmod;
+        ActivateModifier();
+    }
+
+    void CollideReset()
+    {
+        zzDir = Vector3.Cross(rb.velocity, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
+        zzAltTimer = zzTimer / 2;
+        ActivateModifier();
     }
 
     void Bounce()
@@ -125,6 +170,7 @@ public class Bullet : MonoBehaviour
         ActivateFire(mod.fire);
         ActivateIce(mod.ice);
         ActivateBoom(mod.explosion);
+        ActivateLaser(mod.laser);
     }
 
     private void Update()
@@ -143,6 +189,12 @@ public class Bullet : MonoBehaviour
                 noMulti = false;
             }
         }
+
+        if (collided)
+        {
+            CollideReset();
+            collided = false;
+        }
     }
 
     private void FixedUpdate()
@@ -158,17 +210,27 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (mod.laser)
+        {
+            PauseLaser();
+        }
         if (mod.explosion)
         {
             playBoom();
         }
+        collided = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (mod.laser)
+        {
+            PauseLaser();
+        }
         if (mod.explosion)
         {
             playBoom();
         }
+        collided = true;
     }
 }
