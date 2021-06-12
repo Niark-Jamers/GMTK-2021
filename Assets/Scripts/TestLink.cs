@@ -29,7 +29,7 @@ public class TestLink : MonoBehaviour
             GameObject g = Instantiate(bulletPrefab, c.point, Quaternion.Euler(0, 0, 0));
             Bullet b = g.GetComponent<Bullet>();
             b.rb = g.GetComponent<Rigidbody2D>();
-            b.resetOnhit(tmp);
+            b.resetValue(tmp);
             b.noMulti = true;
             //Debug.DrawRay(c.point, tmp, Color.blue, 1f);
         }
@@ -52,7 +52,7 @@ public class TestLink : MonoBehaviour
                     Destroy(col.gameObject);
                 }
                 else
-                    col.gameObject.GetComponent<Bullet>().resetOnhit(velocity);
+                    col.gameObject.GetComponent<Bullet>().resetValue(velocity);
             }
         }
     }
