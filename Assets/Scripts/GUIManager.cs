@@ -15,7 +15,7 @@ public class GUIManager : MonoBehaviour
 
     public void Pause()
     {
-        pausePanel.SetActive(!pausePanel.active);
+        pausePanel.SetActive(!pausePanel.activeSelf);
         pause = !pause;
     }
 
