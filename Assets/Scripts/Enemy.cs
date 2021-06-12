@@ -11,11 +11,60 @@ public class Enemy : MonoBehaviour
     GameObject player;
     GameObject powerBall;
 
+    public float moveSpeed = 5;
+
+    [Header("Patrol")]
+    public bool patrol = true;
+    public GameObject[] controlsPoints;
+    bool isAggro = false;
+
+    [Header("PlayerAggro")]
+    public bool aggro = true;
+    public float aggroDistance = 10f;
+
+    Animator    animator;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         powerBall = GameObject.FindGameObjectWithTag("PowerBall");
         StartCoroutine(Shoot());
+
+        animator = GetComponent<Animator>();
+    }
+
+    int currentPoint = 0;
+    void Update()
+    {
+        Vector2 movement = Vector3.zero;
+
+        if (patrol && !isAggro)
+        {
+            var target = controlsPoints[currentPoint].transform.position;
+            movement = Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed);
+            if (Vector2.Distance((Vector2)transform.position + movement, target) < 0.1f)
+                currentPoint = (currentPoint + 1) % controlsPoints.Length;
+        }
+
+        if (aggro)
+        {
+            if (Vector2.Distance(player.transform.position, transform.position) < aggroDistance)
+                isAggro = true;
+        }
+
+        if (isAggro)
+        {
+            movement = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * moveSpeed);
+        }
+
+        transform.position += (Vector3)movement;
+
+        if (animator != null)
+        {
+            animator.SetFloat("MoveX", movement.x);
+            animator.SetFloat("MoveY", movement.y);
+            // animator.SetTrigger("Attack");
+        }
     }
 
     IEnumerator Shoot()
