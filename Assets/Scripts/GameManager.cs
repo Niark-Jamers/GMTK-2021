@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void PowerRoulette()
-    {
+    { 
         roulette = new List<string>();
         tmpAllPowerList = new List<string>(allPowerList);
         while (roulette.Count < 4)

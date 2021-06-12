@@ -46,6 +46,7 @@ public class GUIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
+            Time.timeScale = 0;
             GameManager.Instance.PowerRoulette();
         }
     }
@@ -62,6 +63,7 @@ public class GUIManager : MonoBehaviour
     {
         roulettePanel.SetActive(false);
         GameManager.Instance.AddNewPower(nb);
+        Time.timeScale = 1;
     }
 
     public void TastyTest()
