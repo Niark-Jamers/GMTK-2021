@@ -137,6 +137,7 @@ public class Link : MonoBehaviour
         {
             if (!linkActive)
             {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 StartCoroutine(Death());
             }
             col.gameObject.tag = "PlayerBullet";
