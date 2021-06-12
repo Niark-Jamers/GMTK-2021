@@ -203,6 +203,12 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player")
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         if (mod.bounce)
         {
             if (other.gameObject.tag == "Link")
@@ -210,6 +216,8 @@ public class Bullet : MonoBehaviour
                 var tmp = other.gameObject.GetComponent<Link>();
                 if (tmp.linkActive)
                     resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
+                else
+                    Destroy(gameObject);
             }
             else
                 resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));

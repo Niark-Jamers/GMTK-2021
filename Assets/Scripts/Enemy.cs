@@ -24,7 +24,12 @@ public class Enemy : MonoBehaviour
     public float minPlayerDistance = 3f;
 
     [Header("Bullets")]
+    public Transform bulletFirePosition = null;
     public float fireDelay = 1;
+
+    [Header("Audio")]
+    public AudioClip shootClip;
+    public AudioClip deathClip;
 
     Animator        animator;
     new SpriteRenderer  renderer;
@@ -104,9 +109,14 @@ public class Enemy : MonoBehaviour
            // {
             //    target = powerBall.transform.position;
             //}
-            var g = GameObject.Instantiate(bullet, transform.position + -(transform.position - target).normalized, Quaternion.identity);
+            var t = bulletFirePosition != null ? bulletFirePosition.transform.position : transform.position;
+            var g = GameObject.Instantiate(bullet, t + -(t - target).normalized, Quaternion.identity);
             var r = g.GetComponent<Rigidbody2D>();
-            r.AddForce(-(transform.position - target).normalized * bulletSpeed, ForceMode2D.Force);
+            r.AddForce(-(t - target).normalized * bulletSpeed, ForceMode2D.Force);
+
+            if (shootClip)
+                AudioManager.PlayOnShot(shootClip, 0.5f);
+
             yield return new WaitForSeconds(fireDelay);
         }
     }
@@ -126,6 +136,8 @@ public class Enemy : MonoBehaviour
         {
             if (animator != null)
                 animator.SetTrigger("Death");
+            if (deathClip != null)
+                AudioManager.PlayOnShot(deathClip);
             dead = true;
         }
     }
