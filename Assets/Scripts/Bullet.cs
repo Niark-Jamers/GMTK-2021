@@ -205,7 +205,14 @@ public class Bullet : MonoBehaviour
     {
         if (mod.bounce)
         {
-            resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
+            if (other.gameObject.tag == "Link")
+            {
+                var tmp = other.gameObject.GetComponent<Link>();
+                if (tmp.linkActive)
+                    resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
+            }
+            else
+                resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
         }
         else if (other.gameObject.tag == "Wall")
         {
