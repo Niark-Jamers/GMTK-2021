@@ -398,6 +398,12 @@ TextureImporter:
   - first:
       213: 6234777305426516603
     second: Dungeon tileset_17
+  - first:
+      213: -1423859066413374060
+    second: Dungeon tileset_18
+  - first:
+      213: -686350255000960706
+    second: Dungeon tileset_24
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -562,8 +568,8 @@ TextureImporter:
       name: Dungeon tileset_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 176
+        x: 112
+        y: 128
         width: 16
         height: 16
       alignment: 0
@@ -1384,7 +1390,7 @@ TextureImporter:
         x: 368
         y: 144
         width: 16
-        height: 32
+        height: 48
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1489,7 +1495,7 @@ TextureImporter:
         x: 64
         y: 112
         width: 16
-        height: 32
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1541,48 +1547,6 @@ TextureImporter:
       bones: []
       spriteID: 21717a3dc03f126c0800000000000000
       internalID: -4169784543552268526
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_75
-      rect:
-        serializedVersion: 2
-        x: 112
-        y: 112
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e70ee8a9295750d80800000000000000
-      internalID: -8285086666959429506
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_76
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 112
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c986a28cf67cc540800000000000000
-      internalID: 5029525710761789888
       vertices: []
       indices: 
       edges: []
@@ -2990,6 +2954,48 @@ TextureImporter:
       bones: []
       spriteID: b7a5d9f0de0668650800000000000000
       internalID: 6234777305426516603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon tileset_18
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 495263819bf6d3ce0800000000000000
+      internalID: -1423859066413374060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Dungeon tileset_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 128
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e314b2b54189976f0800000000000000
+      internalID: -686350255000960706
       vertices: []
       indices: 
       edges: []
