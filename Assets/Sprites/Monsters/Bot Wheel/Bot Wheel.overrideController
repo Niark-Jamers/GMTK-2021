@@ -7,5 +7,15 @@ AnimatorOverrideController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Bot Wheel
-  m_Controller: {fileID: 0}
-  m_Clips: []
+  m_Controller: {fileID: 9100000, guid: a3a7c109319b33f45aa9e714876a6f21, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: a5692b364f6ac084bb4cbff554884a6c, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 41c68ba551322e84fb35dd2fb30a435e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 57706c5b12a10a54a86d0f6bf02cc25e, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: df41d20f831cead428dc3b44d2e7bf6b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 0ac34768f7b2e014c8041035ef18c0f4, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 89c2a35f1d267d340bd33d9f252a6e52, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 601a9896450b1234f8ac868798d959a9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: df41d20f831cead428dc3b44d2e7bf6b, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: bdfbbcec1a1f8f64e80f6db162aa8baa, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: df41d20f831cead428dc3b44d2e7bf6b, type: 2}
