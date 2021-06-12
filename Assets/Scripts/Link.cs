@@ -167,6 +167,8 @@ public class Link : MonoBehaviour
 
     IEnumerator Death()
     {
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
+
         dead = true;
 
         player.GetComponent<Player>().Die();
