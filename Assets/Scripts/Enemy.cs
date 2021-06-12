@@ -97,13 +97,13 @@ public class Enemy : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger("Attack");
 
-            if (Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, powerBall.transform.position))
-            {
+            //if (Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, powerBall.transform.position))
+           // {
                 target = player.transform.position;
-            } else
-            {
-                target = powerBall.transform.position;
-            }
+           // } else
+           // {
+            //    target = powerBall.transform.position;
+            //}
             var g = GameObject.Instantiate(bullet, transform.position + -(transform.position - target).normalized, Quaternion.identity);
             var r = g.GetComponent<Rigidbody2D>();
             r.AddForce(-(transform.position - target).normalized * bulletSpeed, ForceMode2D.Force);

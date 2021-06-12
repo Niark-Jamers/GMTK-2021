@@ -17637,7 +17637,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e37330f1f00d54381730651b31e9e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  background: {fileID: 0}
+  background: {fileID: 8300000, guid: 38967118410dd6e4095291b98b907feb, type: 3}
 --- !u!1 &1094726391
 GameObject:
   m_ObjectHideFlags: 0
@@ -17710,6 +17710,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1174384036 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2196471515107623511, guid: 1935bb21c390e90409040d3a64621fa3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1530901498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &1174384037
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174384036}
+  m_Enabled: 1
 --- !u!1001 &1244706194
 PrefabInstance:
   m_ObjectHideFlags: 0
