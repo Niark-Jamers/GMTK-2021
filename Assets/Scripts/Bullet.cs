@@ -58,6 +58,7 @@ public class Bullet : MonoBehaviour
         // Vector2 tmp = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 500;
         // rb.AddForce(tmp);
         // direction = tmp.normalized;
+        direction = rb.velocity;
         BaseScale = transform.localScale;
         bounceAltTimer = bounceTimer / 2;
         zzAltTimer = zzTimer / 2;

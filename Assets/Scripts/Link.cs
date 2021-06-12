@@ -84,12 +84,13 @@ public class Link : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Bullet")
+        if (col.gameObject.tag == "EnemyBullet")
         {
             if (!linkActive)
             {
                 GameManager.Instance.ReloadLevel();
             }
+            col.gameObject.tag = "PlayerBullet";
             var r = col.gameObject.GetComponent<Rigidbody2D>();
             r.velocity = -col.contacts[0].normal * r.velocity.magnitude * multiplier;
         }
