@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     string curScene;
     int sceneNumber;
 
-    bool pause = false;
 
     private void Awake()
     {
@@ -32,7 +31,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
     }
 
     public void ReloadLevel()
@@ -47,8 +45,9 @@ public class GameManager : MonoBehaviour
 
 
 
-    public void Pause()
+
+    public void Exit()
     {
-        pause = !pause;
+        Application.Quit();
     }
 }
