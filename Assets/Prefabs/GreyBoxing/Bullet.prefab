@@ -138,12 +138,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86bf994f39bb5349a96d805717e1854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 0}
   fire: {fileID: 20838678}
   ice: {fileID: 1210040428}
   boom: {fileID: 3788683954017290272}
   mod:
     laser: 0
-    fire: 0
+    fire: 1
     ice: 0
     zigzag: 1
     explosion: 0
@@ -151,9 +152,11 @@ MonoBehaviour:
   sizeMult: 6.11
   bounceTimer: 0.14
   direction: {x: 0, y: -1}
-  zzStr: 3.32
+  zzStr: 1.5
   zzGoRight: 1
   zzTimer: 1
+  noMulti: 0
+  multiTimer: 1
 --- !u!1001 &2640160266613472162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -260,7 +263,7 @@ PrefabInstance:
     - target: {fileID: 3788683955386586728, guid: 98754b86aa553214d92acd8743270e86,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3788683955386586734, guid: 98754b86aa553214d92acd8743270e86,
         type: 3}

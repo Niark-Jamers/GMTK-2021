@@ -97,7 +97,7 @@ public class Bullet : MonoBehaviour
             rb.velocity = direction;
             zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         }
-        rb.AddForce(zzDir * zzStr);
+        rb.velocity = (direction + (Vector2)zzDir * zzStr);
     }
 
     public void resetOnhit(Vector3 dir)
@@ -130,8 +130,8 @@ public class Bullet : MonoBehaviour
     {
         if (mod.bounce)
             Bounce();
-        Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
-        Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
+        // Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
+        // Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
 
         if (noMulti)
         {
