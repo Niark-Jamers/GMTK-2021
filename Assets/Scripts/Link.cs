@@ -86,6 +86,10 @@ public class Link : MonoBehaviour
     {
         if (col.gameObject.tag == "Bullet")
         {
+            if (!linkActive)
+            {
+                GameManager.Instance.ReloadLevel();
+            }
             var r = col.gameObject.GetComponent<Rigidbody2D>();
             r.velocity = -col.contacts[0].normal * r.velocity.magnitude * multiplier;
         }
