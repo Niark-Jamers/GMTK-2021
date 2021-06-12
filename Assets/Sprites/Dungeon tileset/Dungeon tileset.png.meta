@@ -1972,33 +1972,12 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dungeon tileset_107
+      name: Dungeon tileset_108
       rect:
         serializedVersion: 2
         x: 192
         y: 80
-        width: 16
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6bfc8a2848434940800000000000000
-      internalID: 5279142662997080938
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Dungeon tileset_108
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 80
-        width: 16
+        width: 32
         height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
