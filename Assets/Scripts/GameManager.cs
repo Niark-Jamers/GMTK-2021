@@ -12,10 +12,17 @@ public class GameManager : MonoBehaviour
     string curScene;
     int sceneNumber;
 
+    [Header("Power Management")]
+    public List<string> allPowerList;
+    public List<string> curPowerList;
+    private List<string> tmpAllPowerList;
+    private List<string> roulette;
+    private string tmpPow;
+
 
     private void Awake()
     {
-        if (Instance == null) { Instance = this; } else { Debug.Log("Warning: multiple " + this + " in scene!"); }
+        if (Instance == null) { Instance = this; } else { Destroy(this); }
         DontDestroyOnLoad(this);
 
         curScene = SceneManager.GetActiveScene().name;
@@ -33,6 +40,28 @@ public class GameManager : MonoBehaviour
     {
     }
 
+    public void PowerRoulette()
+    {
+        roulette = new List<string>();
+        tmpAllPowerList = new List<string>(allPowerList);
+        while (roulette.Count < 4)
+        {
+            string pow = tmpAllPowerList[Random.Range(0, tmpAllPowerList.Count)];
+            if (tmpAllPowerList.Count < 3)
+            {
+                roulette.Add("DETERMINATION");
+            } else if (curPowerList.Contains(pow))
+            {
+                tmpAllPowerList.Remove(pow);
+                continue ;
+            } else
+            {
+                roulette.Add(pow);
+            }
+        }
+        GUIManager.Instance.StartRoulette(roulette);
+    }
+
     public void ReloadLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -43,7 +72,10 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneList[sceneNumber + 1]);
     }
 
-
+    public void AddNewPower(int nb)
+    {
+        curPowerList.Add(roulette[nb]);
+    }
 
 
     public void Exit()
