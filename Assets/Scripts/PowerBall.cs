@@ -42,7 +42,7 @@ public class PowerBall : MonoBehaviour
         // Cancer control:
         // transform.position += new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"), 0) * speed * Time.deltaTime;
 
-        var m = (Vector2)Input.mousePosition + new Vector2(-10, 0);
+        var m = (Vector2)Input.mousePosition + new Vector2(-2, 0);
         // var p = camera.ScreenToWorldPoint(new Vector3(m.x, m.y, camera.nearClipPlane));
         var c = m / new Vector2(camera.pixelWidth, camera.pixelHeight);
         c = new Vector2(Mathf.Clamp01(c.x), Mathf.Clamp01(c.y));
@@ -53,7 +53,7 @@ public class PowerBall : MonoBehaviour
         // c = c + 0.5f * Vector2.one;
         // c *= camera.orthographicSize;
         // c += new Vector2(cam.transform.position.x, cam.transform.position.y);
-        var p = c;
+        var p = c + (Vector2)camera.transform.position;
 
         float distance = Vector2.Distance(player.transform.position, p);
         // Debug.Log(((Vector2)p - (Vector2)player.transform.position).normalized);

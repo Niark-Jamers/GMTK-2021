@@ -33,6 +33,13 @@ public class Link : MonoBehaviour
     {
         UpdateHeat();
         heatBar.value = curHeat;
+
+        Vector2 diff = target.transform.position - player.transform.position;
+        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
+        transform.localRotation = Quaternion.Euler(0f, 0f, rot_z);
+        transform.localScale = new Vector3(diff.magnitude, 0.2f, 0.2f);
+
+        transform.localPosition = (target.transform.localPosition + player.transform.localPosition) / 2;
     }
 
     void UpdateHeat()
@@ -73,20 +80,6 @@ public class Link : MonoBehaviour
             }
         }
         selfSprite.color = Color.Lerp(Color.blue, Color.red, curHeat / 100);
-    }
-
-    private void FixedUpdate()
-    {
-
-        transform.position = (target.transform.position + player.transform.position) / 2;
-        Vector2 diff = target.transform.position - player.transform.position;
-
-        float rot_z = Mathf.Atan2(diff.y, diff.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rot_z);
-        transform.localScale = new Vector3(diff.magnitude, 0.2f, 0.2f);
-
-        // if (target != null)
-        //     line.SetPositions(new Vector3[] { transform.position, target.transform.position });
     }
 
     void OnCollisionEnter2D(Collision2D col)
