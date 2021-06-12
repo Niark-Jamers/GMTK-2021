@@ -122,7 +122,7 @@ public class Enemy : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.tag == "Bullet")
+        if (col.gameObject.tag == "PlayerBullet" && !dead)
         {
             if (animator != null)
                 animator.SetTrigger("Death");
