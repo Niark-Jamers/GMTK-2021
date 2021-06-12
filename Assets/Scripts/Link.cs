@@ -44,7 +44,7 @@ public class Link : MonoBehaviour
         // line = GetComponent<LineRenderer>();
     }
 
-void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
+    void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
     {
         Vector2 baseDir = Quaternion.Euler(0, 0, (-multiShotStep * p.multiShot) / 2) * dir.normalized;
         // Debug.DrawRay(c.point, baseDir, Color.blue, 1f);
@@ -104,7 +104,8 @@ void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
                     {
                         overHeating = false;
                     }
-                } else
+                }
+                else
                 {
                     curHeat -= Mathf.Clamp(Time.deltaTime * heatSpeed, 0, 100);
                 }
@@ -124,7 +125,7 @@ void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
             var r = col.gameObject.GetComponent<Rigidbody2D>();
             Vector2 velocity = -col.contacts[0].normal * speed;
             Bullet tb = col.gameObject.GetComponent<Bullet>();
-            
+
             if (tb.noMulti == false)
             {
                 if (p.multiShot > 0)
@@ -144,7 +145,8 @@ void MoultiShotage(Vector2 dir, ContactPoint2D c, Bullet.modifier tmod)
         if (value)
         {
             spriteMaterial.SetColor("_Color", new Color(15f, 15f, 15f));
-        } else
+        }
+        else
         {
             spriteMaterial.SetColor("_Color", new Color(5, 5, 5));
         }
