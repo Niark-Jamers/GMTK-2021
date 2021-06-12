@@ -153,13 +153,13 @@ MonoBehaviour:
     bounce: 0
   sizeMult: 6.11
   bounceTimer: 0.14
-  direction: {x: 0, y: -8.192e+14}
+  direction: {x: 0, y: 0}
   zzStr: 1.5
   zzGoRight: 1
   zzTimer: 1
   noMulti: 0
   multiTimer: 1
-  laserSpeed: 2
+  laserSpeed: 20
 --- !u!1001 &2640160266613472162
 PrefabInstance:
   m_ObjectHideFlags: 0

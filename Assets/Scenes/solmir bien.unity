@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 62135327}
   m_Layer: 0
   m_Name: Square (3)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2631,7 +2631,7 @@ GameObject:
   - component: {fileID: 1321402562}
   m_Layer: 0
   m_Name: Square (1)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2936,6 +2936,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 59f9e70033c4872438ea0bbacbf03635,
         type: 2}
+    - target: {fileID: 5527399106007056620, guid: 6257a35bbcb23e44fa83609b34d3f3d1,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5527399106007056621, guid: 6257a35bbcb23e44fa83609b34d3f3d1,
         type: 3}
       propertyPath: m_Radius
@@ -3043,7 +3048,7 @@ GameObject:
   - component: {fileID: 1943708063}
   m_Layer: 0
   m_Name: Square
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3223,7 +3228,7 @@ GameObject:
   - component: {fileID: 2100270053}
   m_Layer: 0
   m_Name: Square (2)
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3667,7 +3672,7 @@ PrefabInstance:
     - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
         type: 3}
       propertyPath: p.bMod.bounce
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
         type: 3}

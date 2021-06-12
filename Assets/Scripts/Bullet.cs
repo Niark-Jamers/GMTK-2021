@@ -56,8 +56,7 @@ public class Bullet : MonoBehaviour
     [Header("LASER")]
     public float laserSpeed = 20;
 
-
-    bool collided = false;
+    bool toBeKilled = false;
 
     // Start is called before the first frame update
     void Start()
@@ -86,15 +85,17 @@ public class Bullet : MonoBehaviour
 
     void ActivateLaser(bool t)
     {
+        laser.SetActive(false);
         laser.SetActive(t);
         laserps = laser.GetComponent<ParticleSystem>();
-        direction = direction * laserSpeed;
+        direction = direction.normalized * laserSpeed;
         rb.velocity = direction;
         ParticleSystem.VelocityOverLifetimeModule tmp = laserps.velocityOverLifetime;
         tmp.x = direction.x;
         tmp.y = direction.y;
         laserps.Play();
     }
+
 
     void PauseLaser()
     {
@@ -135,6 +136,7 @@ public class Bullet : MonoBehaviour
         direction = dir;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;
+        ActivateModifier();
     }
 
     public void resetValue(Vector3 dir, modifier tmod)
@@ -147,12 +149,7 @@ public class Bullet : MonoBehaviour
         ActivateModifier();
     }
 
-    void CollideReset()
-    {
-        zzDir = Vector3.Cross(rb.velocity, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
-        zzAltTimer = zzTimer / 2;
-        ActivateModifier();
-    }
+
 
     void Bounce()
     {
@@ -189,12 +186,8 @@ public class Bullet : MonoBehaviour
                 noMulti = false;
             }
         }
-
-        if (collided)
-        {
-            CollideReset();
-            collided = false;
-        }
+        if (toBeKilled)
+            Destroy(this.gameObject);
     }
 
     private void FixedUpdate()
@@ -210,27 +203,33 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (mod.laser)
+        if (mod.bounce)
         {
-            PauseLaser();
+            resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
         }
+        else if (other.gameObject.tag == "Wall")
+        {
+            Destroy(this.gameObject);
+        }
+        // if (mod.laser)
+        // {
+        //     PauseLaser();
+        // }
         if (mod.explosion)
         {
             playBoom();
         }
-        collided = true;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (mod.laser)
-        {
-            PauseLaser();
-        }
+        // if (mod.laser)
+        // {
+        //     PauseLaser();
+        // }
         if (mod.explosion)
         {
             playBoom();
         }
-        collided = true;
     }
 }

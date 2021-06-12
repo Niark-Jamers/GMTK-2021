@@ -8,6 +8,7 @@ TagManager:
   - PowerBall
   - EnemyBullet
   - PlayerBullet
+  - Wall
   layers:
   - Default
   - TransparentFX
