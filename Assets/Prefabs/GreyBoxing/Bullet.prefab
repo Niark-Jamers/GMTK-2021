@@ -138,9 +138,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86bf994f39bb5349a96d805717e1854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firePS: {fileID: 20838678}
-  icePS: {fileID: 1210040428}
-  boomPS: {fileID: 3788683954017290272}
+  fire: {fileID: 20838678}
+  ice: {fileID: 1210040428}
+  boom: {fileID: 3788683954017290272}
   mod:
     laser: 0
     fire: 0
@@ -260,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 3788683955386586728, guid: 98754b86aa553214d92acd8743270e86,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3788683955386586734, guid: 98754b86aa553214d92acd8743270e86,
         type: 3}
