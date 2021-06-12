@@ -210,11 +210,11 @@ public class Link : MonoBehaviour
     {
         if (value)
         {
-            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 3);
+            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 8);
         }
         else
         {
-            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 1.5f);
+            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 2f);
         }
 
         linkActive = value;

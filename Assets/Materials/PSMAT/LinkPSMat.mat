@@ -21,8 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: LinkPSMat
-  m_Shader: {fileID: -6465566751694194690, guid: 33c408d291a9778448efef2f2a582c47,
-    type: 3}
+  m_Shader: {fileID: 4800000, guid: 05876dbd3c8155843a39e57057fdcda6, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -118,7 +117,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 1.5, b: 1.5, a: 1.5}
+    - _Color: {r: 0, g: 2, b: 2, a: 2}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []
