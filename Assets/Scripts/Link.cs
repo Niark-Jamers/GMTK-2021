@@ -14,6 +14,9 @@ public class Link : MonoBehaviour
     public float heatSpeed = 2f;
     public float overheatSpeed = 1f;
 
+    public SpriteRenderer selfSprite;
+    public Material spriteMaterial;
+
     private bool overHeating;
     //private BoxCollider2D selfCollider;
     GameObject player;
@@ -69,6 +72,7 @@ public class Link : MonoBehaviour
                 }
             }
         }
+        selfSprite.color = Color.Lerp(Color.blue, Color.red, curHeat / 100);
     }
 
     private void FixedUpdate()
@@ -96,6 +100,14 @@ public class Link : MonoBehaviour
 
     void EnableLink(bool value)
     {
+        if (value)
+        {
+            spriteMaterial.SetColor("_Color", new Color(20f, 20f, 20f));
+        } else
+        {
+            spriteMaterial.SetColor("_Color", new Color(1, 1, 1));
+        }
+
         linkActive = value;
         //selfCollider.enabled = value;
     }

@@ -7,11 +7,14 @@ public class Enemy : MonoBehaviour
     public GameObject bullet;
     public float bulletSpeed = 1;
 
+    private Vector3 target;
     GameObject player;
+    GameObject powerBall;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        powerBall = GameObject.FindGameObjectWithTag("PowerBall");
         StartCoroutine(Shoot());
     }
 
@@ -19,9 +22,16 @@ public class Enemy : MonoBehaviour
     {
         while (true)
         {
-            var g = GameObject.Instantiate(bullet, transform.position + -(transform.position - player.transform.position).normalized , Quaternion.identity);
+            if (Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, powerBall.transform.position))
+            {
+                target = player.transform.position;
+            } else
+            {
+                target = powerBall.transform.position;
+            }
+            var g = GameObject.Instantiate(bullet, transform.position + -(transform.position - target).normalized , Quaternion.identity);
             var r = g.GetComponent<Rigidbody2D>();
-            r.AddForce(-(transform.position - player.transform.position).normalized * 0.01f * bulletSpeed, ForceMode2D.Impulse);
+            r.AddForce(-(transform.position - target).normalized * 0.01f * bulletSpeed, ForceMode2D.Impulse);
             yield return new WaitForSeconds(1);
         }
     }
