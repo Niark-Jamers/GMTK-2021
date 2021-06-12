@@ -9,6 +9,7 @@ TagManager:
   - EnemyBullet
   - PlayerBullet
   - Wall
+  - Link
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Water
   - UI
   - 
-  - 
+  - KillParticle
   - Ground Soft
   - Ground Hard
   - Bullet

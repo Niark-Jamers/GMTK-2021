@@ -14,12 +14,13 @@ public class Link : MonoBehaviour
     public float heatSpeed = 2f;
     public float overheatSpeed = 1f;
 
-    public SpriteRenderer selfSprite;
+    public ParticleSystem ps;
     public Material spriteMaterial;
 
     private bool overHeating;
     //private BoxCollider2D selfCollider;
     GameObject player;
+
 
     LineRenderer line;
 
@@ -28,6 +29,8 @@ public class Link : MonoBehaviour
     public float multiShotStep = 15;
 
     bool dead = false;
+
+    Color baseColor = new Color(0, 216, 255);
 
     [System.Serializable]
     public struct power
@@ -39,6 +42,11 @@ public class Link : MonoBehaviour
 
     [SerializeField]
     public power p = new power();
+
+    Gradient g = new Gradient();
+    GradientColorKey[] ck = new GradientColorKey[2];
+    GradientAlphaKey[] ak = new GradientAlphaKey[2];
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -87,6 +95,19 @@ public class Link : MonoBehaviour
         transform.localPosition = (target.transform.localPosition + player.transform.localPosition) / 2;
     }
 
+    void ModifyGradient(Color c)
+    {
+        ck[0].color = c;
+        ck[0].time = 0.0f;
+        ck[1].color = c;
+        ck[1].time = 1.0f;
+        ak[0].alpha = 1.0f;
+        ak[0].time = 0.0f;
+        ak[1].alpha = 1.0f;
+        ak[1].time = 1.0f;
+        g.SetKeys(ck, ak);
+    }
+
     void UpdateHeat()
     {
         if (Input.GetKey(KeyCode.Mouse0) && !overHeating)
@@ -125,7 +146,9 @@ public class Link : MonoBehaviour
                 }
             }
         }
-        selfSprite.color = Color.Lerp(Color.blue, Color.red, curHeat / 100);
+        var tmp = ps.colorOverLifetime;
+        ModifyGradient(Color.Lerp(Color.cyan, Color.red, curHeat / 100));
+        tmp.color = g;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -145,7 +168,7 @@ public class Link : MonoBehaviour
             Bullet tb = col.gameObject.GetComponent<Bullet>();
             Bullet.modifier tmod = tb.mod;
 
-            if (tb.noMulti == false)
+            if (tb.noMulti == false && linkActive)
             {
                 if (p.multiShot > 0)
                 {
@@ -182,11 +205,11 @@ public class Link : MonoBehaviour
     {
         if (value)
         {
-            spriteMaterial.SetColor("_Color", new Color(15f, 15f, 15f));
+            spriteMaterial.SetColor("_Color", new Color(8f, 8f, 8f));
         }
         else
         {
-            spriteMaterial.SetColor("_Color", new Color(5, 5, 5));
+            spriteMaterial.SetColor("_Color", new Color(2, 2, 2));
         }
 
         linkActive = value;

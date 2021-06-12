@@ -49,4 +49,5 @@ public class Player : MonoBehaviour
             FindObjectOfType<Link>().Die();
         }
     }
+
 }
