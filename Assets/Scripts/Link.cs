@@ -102,10 +102,10 @@ public class Link : MonoBehaviour
     {
         if (value)
         {
-            spriteMaterial.SetColor("_Color", new Color(20f, 20f, 20f));
+            spriteMaterial.SetColor("_Color", new Color(15f, 15f, 15f));
         } else
         {
-            spriteMaterial.SetColor("_Color", new Color(1, 1, 1));
+            spriteMaterial.SetColor("_Color", new Color(5, 5, 5));
         }
 
         linkActive = value;
