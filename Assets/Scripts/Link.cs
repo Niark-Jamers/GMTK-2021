@@ -137,7 +137,7 @@ public class Link : MonoBehaviour
         {
             if (!linkActive)
             {
-                StartCoroutine(Death());
+                Die();
             }
             col.gameObject.tag = "PlayerBullet";
             var r = col.gameObject.GetComponent<Rigidbody2D>();
@@ -158,6 +158,11 @@ public class Link : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Die()
+    {
+        StartCoroutine(Death());
     }
 
     IEnumerator Death()

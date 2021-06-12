@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Antoine.unity
-    guid: f60259f048b52ab419310117eb9a4c41
+    path: Assets/Scenes/Levels/LevelTemplate.unity
+    guid: b9b52fa95d6df4241992aa5c1440d690
   m_configObjects: {}

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
 
     Animator        animator;
     SpriteRenderer  spriteRenderer;
+    bool dead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +21,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (dead)
+            return;
         var movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
         transform.position += movement * speed * Time.deltaTime;
 
@@ -32,6 +35,18 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        dead = true;
         animator.SetTrigger("Death");
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (dead)
+            return;
+
+        if (col.gameObject.tag == "EnemyBullet")
+        {
+            FindObjectOfType<Link>().Die();
+        }
     }
 }

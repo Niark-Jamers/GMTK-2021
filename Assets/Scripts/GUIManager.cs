@@ -22,7 +22,6 @@ public class GUIManager : MonoBehaviour
     public void Awake()
     {
         if (Instance == null) { Instance = this; } else { Destroy(this); }
-        DontDestroyOnLoad(this);
     }
     public void SetLife(float lifeBetween01)
     {

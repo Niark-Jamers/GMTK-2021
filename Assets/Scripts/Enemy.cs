@@ -104,9 +104,9 @@ public class Enemy : MonoBehaviour
             {
                 target = powerBall.transform.position;
             }
-            var g = GameObject.Instantiate(bullet, transform.position + -(transform.position - target).normalized * 2 , Quaternion.identity);
+            var g = GameObject.Instantiate(bullet, transform.position + -(transform.position - target).normalized, Quaternion.identity);
             var r = g.GetComponent<Rigidbody2D>();
-            r.AddForce(-(transform.position - target).normalized * 0.1f * bulletSpeed, ForceMode2D.Impulse);
+            r.AddForce(-(transform.position - target).normalized * bulletSpeed, ForceMode2D.Force);
             yield return new WaitForSeconds(fireDelay);
         }
     }
