@@ -976,7 +976,7 @@ PrefabInstance:
     - target: {fileID: 2777427894905920399, guid: a60a7e3e2e1ad5749a022058e8270a1b,
         type: 3}
       propertyPath: p.multiShot
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2777427894905920400, guid: a60a7e3e2e1ad5749a022058e8270a1b,
         type: 3}
@@ -1004,7 +1004,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 183071cad2423ef428aa71c791fdadcb, type: 2}
     - target: {fileID: 20838678, guid: cd5a860ace987404a9320e5b4dd25850, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 385360758, guid: cd5a860ace987404a9320e5b4dd25850, type: 3}
       propertyPath: InitialModule.startColor.maxColor.a
@@ -1116,14 +1116,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 20838678, guid: cd5a860ace987404a9320e5b4dd25850, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2077468933, guid: cd5a860ace987404a9320e5b4dd25850, type: 3}
-      propertyPath: mod.fire
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1124802163566534960, guid: cd5a860ace987404a9320e5b4dd25850,
         type: 3}
       propertyPath: m_Name
@@ -1345,7 +1337,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 20838678, guid: cd5a860ace987404a9320e5b4dd25850, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 210953864, guid: cd5a860ace987404a9320e5b4dd25850, type: 3}
       propertyPath: looping
@@ -1588,7 +1580,7 @@ PrefabInstance:
     - target: {fileID: 2777427894905920399, guid: a60a7e3e2e1ad5749a022058e8270a1b,
         type: 3}
       propertyPath: p.multiShot
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2777427894905920400, guid: a60a7e3e2e1ad5749a022058e8270a1b,
         type: 3}

@@ -130,8 +130,8 @@ public class Bullet : MonoBehaviour
     {
         if (mod.bounce)
             Bounce();
-        // Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
-        // Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
+        Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
+        Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
 
         if (noMulti)
         {

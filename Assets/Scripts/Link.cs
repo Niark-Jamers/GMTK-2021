@@ -24,7 +24,7 @@ public class Link : MonoBehaviour
     LineRenderer line;
 
     public GameObject bulletPrefab;
-    public float speed = 0.01f;
+    public float speed = 2f;
     public float multiShotStep = 15;
 
     [System.Serializable]
