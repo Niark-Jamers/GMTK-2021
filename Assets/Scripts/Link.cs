@@ -30,8 +30,6 @@ public class Link : MonoBehaviour
 
     bool dead = false;
 
-    Color baseColor = new Color(0, 216, 255);
-
     [System.Serializable]
     public struct power
     {
@@ -108,6 +106,13 @@ public class Link : MonoBehaviour
         g.SetKeys(ck, ak);
     }
 
+    Color Slurp(Color c1, Color c2, float t)
+    {
+        return new Color(c1.r * (1 - t) + c2.r * t,
+        c1.g * (1 - t) + c2.g * t,
+        c1.b * (1 - t) + c2.b * t);
+    }
+
     void UpdateHeat()
     {
         if (Input.GetKey(KeyCode.Mouse0) && !overHeating)
@@ -147,7 +152,7 @@ public class Link : MonoBehaviour
             }
         }
         var tmp = ps.colorOverLifetime;
-        ModifyGradient(Color.Lerp(Color.cyan, Color.red, curHeat / 100));
+        ModifyGradient(Slurp(Color.cyan, Color.red, curHeat / 100));
         tmp.color = g;
     }
 
@@ -205,11 +210,11 @@ public class Link : MonoBehaviour
     {
         if (value)
         {
-            spriteMaterial.SetColor("_Color", new Color(8f, 8f, 8f));
+            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 8);
         }
         else
         {
-            spriteMaterial.SetColor("_Color", new Color(2, 2, 2));
+            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 2f);
         }
 
         linkActive = value;

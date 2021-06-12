@@ -102,15 +102,15 @@ public class Enemy : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger("Attack");
 
-            if (Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, powerBall.transform.position))
-            {
+            //if (Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, powerBall.transform.position))
+           // {
                 target = player.transform.position;
-            } else
-            {
-                target = powerBall.transform.position;
-            }
+           // } else
+           // {
+            //    target = powerBall.transform.position;
+            //}
             var t = bulletFirePosition != null ? bulletFirePosition.transform.position : transform.position;
-            var g = GameObject.Instantiate(bullet, t + -(t - target).normalized * 0.2f, Quaternion.identity);
+            var g = GameObject.Instantiate(bullet, t + -(t - target).normalized, Quaternion.identity);
             var r = g.GetComponent<Rigidbody2D>();
             r.AddForce(-(t - target).normalized * bulletSpeed, ForceMode2D.Force);
 
