@@ -31,7 +31,7 @@ public class TestLink : MonoBehaviour
             b.rb = g.GetComponent<Rigidbody2D>();
             b.resetOnhit(tmp);
             b.noMulti = true;
-            Debug.DrawRay(c.point, tmp, Color.blue, 1f);
+            //Debug.DrawRay(c.point, tmp, Color.blue, 1f);
         }
     }
 
