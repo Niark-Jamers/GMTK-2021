@@ -32,7 +32,7 @@ public class GUIManager : MonoBehaviour
 
     public void Pause()
     {
-        pausePanel.SetActive(!pausePanel.active);
+        pausePanel.SetActive(!pausePanel.activeSelf);
         if (Time.timeScale == 0) { Time.timeScale = 1; } else { Time.timeScale = 0; }
         pause = !pause;
     }
