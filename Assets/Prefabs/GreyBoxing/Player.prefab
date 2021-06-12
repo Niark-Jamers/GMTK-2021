@@ -81,7 +81,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 9148340609074320578}
-  multiplier: 10
+  heatBar: {fileID: 0}
+  multiplier: 100
+  curHeat: 0
+  linkActive: 0
+  heatSpeed: 50
+  overheatSpeed: 25
+  selfSprite: {fileID: 2597981657189896920}
+  spriteMaterial: {fileID: 2100000, guid: 743da9fca7c1218498cb72e411450266, type: 2}
 --- !u!120 &7410997015094048520
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -225,7 +232,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 743da9fca7c1218498cb72e411450266, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -245,10 +252,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
     type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -277,7 +284,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!1 &7897241726613523781
 GameObject:
@@ -389,7 +396,7 @@ GameObject:
   - component: {fileID: 4611986293236396982}
   m_Layer: 0
   m_Name: Ball
-  m_TagString: Untagged
+  m_TagString: PowerBall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -448,7 +455,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7,
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
     type: 3}
   m_Color: {r: 0, g: 0.6403699, b: 1, a: 1}
   m_FlipX: 0

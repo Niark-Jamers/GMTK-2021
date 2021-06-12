@@ -138,15 +138,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c86bf994f39bb5349a96d805717e1854, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  firePS: {fileID: 20838678}
+  icePS: {fileID: 1210040428}
+  boomPS: {fileID: 3788683954017290272}
   mod:
+    laser: 0
     fire: 0
     ice: 0
-    multishot: 0
-    laser: 0
-    zigzag: 0
+    zigzag: 1
     explosion: 0
-    bounce: 0
+    bounce: 1
+  sizeMult: 6.11
+  bounceTimer: 0.14
+  direction: {x: 0, y: -1}
+  zzStr: 3.32
+  zzGoRight: 1
+  zzTimer: 1
 --- !u!1001 &2640160266613472162
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -226,6 +233,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c015d50b6dd71a4c8c018a10ceff9c2, type: 3}
+--- !u!1 &1210040428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2640160267551865806, guid: 8c015d50b6dd71a4c8c018a10ceff9c2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2640160266613472162}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1210040431 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2640160267551865805, guid: 8c015d50b6dd71a4c8c018a10ceff9c2,
@@ -247,7 +260,7 @@ PrefabInstance:
     - target: {fileID: 3788683955386586728, guid: 98754b86aa553214d92acd8743270e86,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3788683955386586734, guid: 98754b86aa553214d92acd8743270e86,
         type: 3}
@@ -311,6 +324,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 98754b86aa553214d92acd8743270e86, type: 3}
+--- !u!1 &20838678 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3788683955386586728, guid: 98754b86aa553214d92acd8743270e86,
+    type: 3}
+  m_PrefabInstance: {fileID: 3788683955372814206}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &20838673 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3788683955386586735, guid: 98754b86aa553214d92acd8743270e86,
@@ -384,8 +403,19 @@ PrefabInstance:
       propertyPath: m_Name
       value: BoomPs
       objectReference: {fileID: 0}
+    - target: {fileID: 8104405745499014884, guid: 24b3db8c470d75144bda0129e2e1f445,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24b3db8c470d75144bda0129e2e1f445, type: 3}
+--- !u!1 &3788683954017290272 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8104405745499014884, guid: 24b3db8c470d75144bda0129e2e1f445,
+    type: 3}
+  m_PrefabInstance: {fileID: 4966548919685664452}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3788683954017290279 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8104405745499014883, guid: 24b3db8c470d75144bda0129e2e1f445,
