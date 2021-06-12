@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bullet : MonoBehaviour
 {
 
-    Rigidbody2D rb;
+    [HideInInspector]
+    public Rigidbody2D rb;
     SpriteRenderer sr;
 
     public GameObject fire;
@@ -44,17 +46,22 @@ public class Bullet : MonoBehaviour
     public float zzTimer = 1f;
     float zzAltTimer = 0;
 
+    [Header("ZIGZAG")]
+    public bool noMulti;
+    public float multiTimer = 1f;
+    float multiAltTimer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        Vector2 tmp = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 500;
-        rb.AddForce(tmp);
-        direction = tmp.normalized;
+        // Vector2 tmp = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 500;
+        // rb.AddForce(tmp);
+        // direction = tmp.normalized;
         BaseScale = transform.localScale;
         bounceAltTimer = bounceTimer / 2;
         zzAltTimer = zzTimer / 2;
-        zzDir = Vector3.Cross(direction, (zzGoRight)? Vector3.forward : Vector3.back).normalized;
+        zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         ActivateModifier();
     }
 
@@ -71,7 +78,7 @@ public class Bullet : MonoBehaviour
     void ActivateBoom(bool t)
     {
         boom.SetActive(t);
-                boomps = boom.GetComponent<ParticleSystem>();
+        boomps = boom.GetComponent<ParticleSystem>();
 
     }
 
@@ -82,24 +89,23 @@ public class Bullet : MonoBehaviour
 
     void ZigZag()
     {
-         zzAltTimer += Time.deltaTime;
+        zzAltTimer += Time.deltaTime;
         if (zzAltTimer > zzTimer)
         {
             zzGoRight = !zzGoRight;
             zzAltTimer = 0f;
             rb.velocity = direction;
-            zzDir = Vector3.Cross(direction, (zzGoRight)? Vector3.forward : Vector3.back).normalized;
+            zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         }
         rb.AddForce(zzDir * zzStr);
     }
 
     public void resetOnhit(Vector3 dir)
     {
+        rb.velocity = dir;
         direction = dir;
-        zzDir = Vector3.Cross(direction, (zzGoRight)? Vector3.forward : Vector3.back).normalized;
-        
+        zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;
-
     }
 
     void Bounce()
@@ -110,7 +116,7 @@ public class Bullet : MonoBehaviour
             isGoBig = !isGoBig;
             bounceAltTimer = 0f;
         }
-       transform.localScale = Vector3.Lerp(transform.localScale, BaseScale * ((isGoBig)?1 + sizeMult: 1 - sizeMult), Time.deltaTime);
+        transform.localScale = Vector3.Lerp(transform.localScale, BaseScale * ((isGoBig) ? 1 + sizeMult : 1 - sizeMult), Time.deltaTime);
     }
 
     public void ActivateModifier()
@@ -124,27 +130,41 @@ public class Bullet : MonoBehaviour
     {
         if (mod.bounce)
             Bounce();
-            Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
-            Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
+        Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
+        Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
+
+        if (noMulti)
+        {
+            multiAltTimer += Time.deltaTime;
+            if (multiAltTimer > multiTimer)
+            {
+                multiAltTimer = 0;
+                noMulti = false;
+            }
+        }
     }
 
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         if (mod.zigzag)
             ZigZag();
     }
 
-    private void OnValidate() {
+    private void OnValidate()
+    {
         ActivateModifier();
     }
 
-    private void OnCollisionEnter2D(Collision2D other) {
+    private void OnCollisionEnter2D(Collision2D other)
+    {
         if (mod.explosion)
         {
             playBoom();
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) {
+    private void OnTriggerEnter2D(Collider2D other)
+    {
         if (mod.explosion)
         {
             playBoom();
