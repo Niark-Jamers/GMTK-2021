@@ -95,13 +95,13 @@ MonoBehaviour:
   multiShotStep: 15
   p:
     bMod:
-      laser: 0
-      fire: 0
-      ice: 0
+      laser: 1
+      fire: 1
+      ice: 1
       zigzag: 0
-      explosion: 0
-      bounce: 0
-    multiShot: 2
+      explosion: 1
+      bounce: 1
+    multiShot: 13
 --- !u!120 &7410997015094048520
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -556,5 +556,5 @@ MonoBehaviour:
   angleSpeed: 0.02
   radius: 3
   speed: 10
-  min: 2
-  max: 3
+  min: 1.5
+  max: 4

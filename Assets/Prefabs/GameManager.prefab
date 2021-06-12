@@ -43,3 +43,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3575f3e54b369db4b8ad1b4e9899cd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneList: []
+  allPowerList:
+  - Fire
+  - Ice
+  - Explosion
+  - Bounce
+  - ZigZag
+  - Laser
+  - Multi Shot
+  curPowerList: []

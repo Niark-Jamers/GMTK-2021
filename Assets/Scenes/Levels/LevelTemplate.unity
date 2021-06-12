@@ -853,41 +853,6 @@ PrefabInstance:
       propertyPath: heatBar
       value: 
       objectReference: {fileID: 226202510}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.bMod.ice
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.bMod.fire
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.multiShot
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.bMod.laser
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.bMod.bounce
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.bMod.zigzag
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: p.bMod.explosion
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2597981655416727975, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
         type: 3}
       propertyPath: m_RootOrder
@@ -947,16 +912,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611986293236396982, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: max
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4611986293236396982, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
-        type: 3}
-      propertyPath: min
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e9e4314c12e6f8b4886332c2d1a4a50d, type: 3}
@@ -1043,46 +998,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.size
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[0]
-      value: Fire
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[1]
-      value: Ice
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[2]
-      value: Explosion
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[3]
-      value: Bounce
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[4]
-      value: ZigZag
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[5]
-      value: Laser
-      objectReference: {fileID: 0}
-    - target: {fileID: 980329288287417721, guid: d61dae287a4cad240b3089c8d9bdbf22,
-        type: 3}
-      propertyPath: allPowerList.Array.data[6]
-      value: Multi Shot
       objectReference: {fileID: 0}
     - target: {fileID: 980329288287417726, guid: d61dae287a4cad240b3089c8d9bdbf22,
         type: 3}
@@ -1220,52 +1135,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1311238080, guid: 1935bb21c390e90409040d3a64621fa3, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311238080, guid: 1935bb21c390e90409040d3a64621fa3, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1311238080, guid: 1935bb21c390e90409040d3a64621fa3, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1311238083, guid: 1935bb21c390e90409040d3a64621fa3, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1672536087}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_AssetsPPU
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: orthographic size
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2196471515107623499, guid: 1935bb21c390e90409040d3a64621fa3,
         type: 3}
       propertyPath: m_RootOrder
