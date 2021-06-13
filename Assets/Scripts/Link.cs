@@ -92,7 +92,7 @@ public class Link : MonoBehaviour
         for (int i = 0; i <= p.multiShot; i++)
         {
             Vector2 tmp = Quaternion.Euler(0, 0, multiShotStep * i) * baseDir;
-            GameObject g = Instantiate(bulletPrefab, c.point, Quaternion.Euler(0, 0, 0));
+            GameObject g = Instantiate(bulletPrefab, c.point + dir.normalized * 0.5f , Quaternion.Euler(0, 0, 0));
             g.tag = "PlayerBullet";
             Bullet b = g.GetComponent<Bullet>();
             b.rb = g.GetComponent<Rigidbody2D>();
