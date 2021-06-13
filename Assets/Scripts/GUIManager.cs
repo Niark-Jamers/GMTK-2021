@@ -33,6 +33,9 @@ public class GUIManager : MonoBehaviour
     public Image    heart3;
     Color heartColor;
 
+    [Header("Fade In")]
+    public GameObject   levelFadeIn;
+
     public void Awake()
     {
         heartColor = heart1.color;
@@ -100,5 +103,10 @@ public class GUIManager : MonoBehaviour
     public void TastyTest()
     {
         Debug.Log("prout");
+    }
+
+    public void LoadNextLevel()
+    {
+        levelFadeIn.GetComponent<Animator>().enabled = true;
     }
 }

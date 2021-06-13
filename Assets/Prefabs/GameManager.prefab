@@ -43,7 +43,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3575f3e54b369db4b8ad1b4e9899cd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneList: []
+  sceneList:
+  - Tuto01
+  - Tuto02
+  - Level01
+  - Level02
   determinationSprite: {fileID: 0}
   allPowerList:
   - name: Fire
