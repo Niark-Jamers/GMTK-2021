@@ -146,6 +146,7 @@ public class Bullet : MonoBehaviour
     public void resetValue(Vector3 dir, modifier tmod)
     {
         rb.velocity = dir;
+        Debug.Log(rb.velocity);
         direction = dir;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;

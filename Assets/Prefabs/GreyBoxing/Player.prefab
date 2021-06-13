@@ -14676,7 +14676,7 @@ MonoBehaviour:
       zigzag: 0
       explosion: 0
       bounce: 0
-    multiShot: 3
+    multiShot: 1
   gg:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 1, a: 1}
