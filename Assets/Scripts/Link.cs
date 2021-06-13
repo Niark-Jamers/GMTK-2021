@@ -64,8 +64,10 @@ public class Link : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
 
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
         subSpeedDamp = psSub.limitVelocityOverLifetime.drag.constant;
-        audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = vwoupvwoupClip;
         audioSource.loop = true;
         audioSource.volume = 0;
