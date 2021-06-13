@@ -20664,7 +20664,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: -0.00000011920929, y: -0.000000059604645}
   serializedVersion: 2
-  m_Radius: 0.33
+  m_Radius: 0.2
 --- !u!1001 &3741745645432079022
 PrefabInstance:
   m_ObjectHideFlags: 0

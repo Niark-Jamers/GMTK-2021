@@ -18,6 +18,11 @@ PrefabInstance:
       propertyPath: m_Radius
       value: 0.4
       objectReference: {fileID: 0}
+    - target: {fileID: 1352871270986061693, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: bulletSpeed
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 1352871270986061694, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_LocalPosition.z
