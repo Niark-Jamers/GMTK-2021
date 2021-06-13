@@ -15,6 +15,7 @@ public class Link : MonoBehaviour
     public float overheatSpeed = 1f;
 
     public ParticleSystem ps;
+    public ParticleSystem psSub;
     public Material spriteMaterial;
     public Material outlineMaterial;
 
@@ -48,11 +49,23 @@ public class Link : MonoBehaviour
     GradientColorKey[] ck = new GradientColorKey[2];
     GradientAlphaKey[] ak = new GradientAlphaKey[2];
 
+    float subSpeedMinX;
+    float subSpeedMinY;
+    float subSpeedMaxX;
+    float subSpeedMaxY;
+
+    float subSpeedDamp;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
-        // line = GetComponent<LineRenderer>();
+        subSpeedDamp = psSub.limitVelocityOverLifetime.drag;
+        // subSpeedMinX = psSub.velocityOverLifetime.x.constantMin;
+        // subSpeedMaxX = psSub.velocityOverLifetime.x.constantMax;
+        // subSpeedMinY = psSub.velocityOverLifetime.y.constantMin;
+        // subSpeedMaxY = psSub.velocityOverLifetime.y.constantMax;
+
     }
 
     Bullet.modifier SetMods(Bullet.modifier tmod)
@@ -215,11 +228,25 @@ public class Link : MonoBehaviour
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 8);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
+            // var tmp = ps.velocityOverLifetime;
+            // var mmtmp = tmp.x;
+            // mmtmp.constantMin = subSpeedMinX * 10;
+            // mmtmp.constantMax = subSpeedMaxX * 10;
+            // mmtmp = tmp.y;
+            // mmtmp.constantMin = subSpeedMinY * 10;
+            // mmtmp.constantMax = subSpeedMaxY * 10;
         }
         else
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 2f);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 2f);
+            // var tmp = ps.velocityOverLifetime;
+            // var mmtmp = tmp.x;
+            // mmtmp.constantMin = subSpeedMinX;
+            // mmtmp.constantMax = subSpeedMaxX;
+            // mmtmp = tmp.y;
+            // mmtmp.constantMin = subSpeedMinY;
+            // mmtmp.constantMax = subSpeedMaxY;
         }
 
         linkActive = value;
