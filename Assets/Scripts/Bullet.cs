@@ -55,8 +55,10 @@ public class Bullet : MonoBehaviour
 
     [Header("LASER")]
     public float laserSpeed = 20;
-
     bool toBeKilled = false;
+
+    float protec = 0.4f;
+    float protecTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -172,6 +174,8 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
+        if (protecTimer < protec)
+            protecTimer += Time.deltaTime;
         if (mod.bounce)
             Bounce();
         Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
@@ -186,8 +190,6 @@ public class Bullet : MonoBehaviour
                 noMulti = false;
             }
         }
-        if (toBeKilled)
-            Destroy(this.gameObject);
     }
 
     private void FixedUpdate()
@@ -205,17 +207,22 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player")
         {
+            if (mod.explosion)
+                playBoom();
             Destroy(gameObject);
             return;
         }
 
         if (mod.bounce)
         {
-            if (other.gameObject.tag == "Link")
+            if (other.gameObject.tag == "Link" && protecTimer > protec)
             {
                 var tmp = other.gameObject.GetComponent<Link>();
                 if (tmp.linkActive)
+                {
+                    protecTimer = 0;
                     resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
+                }
                 else
                     Destroy(gameObject);
             }
