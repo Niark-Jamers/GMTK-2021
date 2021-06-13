@@ -193,14 +193,16 @@ public class Link : MonoBehaviour
             if (!linkActive)
             {
                 TakeHit();
+                Destroy(col.gameObject);
+                return;
             }
-            col.gameObject.tag = "PlayerBullet";
-            var r = col.gameObject.GetComponent<Rigidbody2D>();
-            Vector2 velocity = col.contacts[0].normal * speed;
-            Bullet tb = col.gameObject.GetComponent<Bullet>();
-            Bullet.modifier tmod = tb.mod;
-
-            if (tb.noMulti == false && linkActive)
+            else {
+                col.gameObject.tag = "PlayerBullet";
+                var r = col.gameObject.GetComponent<Rigidbody2D>();
+                Bullet tb = col.gameObject.GetComponent<Bullet>();
+                Vector2 velocity = -col.contacts[0].normal * speed;
+                Bullet.modifier tmod = tb.mod;
+            if (tb.noMulti == false)
             {
                 if (p.multiShot > 0)
                 {
@@ -209,9 +211,12 @@ public class Link : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log("renvoi");
                     col.gameObject.GetComponent<Bullet>().resetValue(velocity, SetMods(tmod));
                 }
             }
+            }
+            
         }
     }
 
