@@ -121,14 +121,17 @@ public class Bullet : MonoBehaviour
 
     void ActivateBoom(bool t)
     {
-        boom.SetActive(t);
-        boomps = boom.GetComponent<ParticleSystem>();
+        // boom.SetActive(t);
+        // boomps = boom.GetComponent<ParticleSystem>();
 
     }
 
-    void playBoom()
+    void PlayBoom()
     {
-        boomps.Play();
+        Debug.Log("BOOM");
+        var tmp = Instantiate(boom, transform.position, Quaternion.Euler(0, 0, 0));
+        tmp.SetActive(true);
+        tmp.GetComponent<ParticleSystem>().Play();
     }
 
     void ZigZag()
@@ -244,7 +247,7 @@ public class Bullet : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D other)
     {
         if (mod.explosion)
-            playBoom();
+            PlayBoom();
         if (other.gameObject.tag == "Link")
             return;
         if (mod.bounce > 0)
@@ -271,7 +274,7 @@ public class Bullet : MonoBehaviour
         // }
         if (mod.explosion)
         {
-            playBoom();
+            PlayBoom();
         }
     }
 }

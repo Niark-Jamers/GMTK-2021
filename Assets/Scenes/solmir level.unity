@@ -5044,6 +5044,11 @@ PrefabInstance:
       propertyPath: heatBar
       value: 
       objectReference: {fileID: 226202510}
+    - target: {fileID: 765345840357419037, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
+        type: 3}
+      propertyPath: p.bMod.explosion
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2597981655416727975, guid: e9e4314c12e6f8b4886332c2d1a4a50d,
         type: 3}
       propertyPath: m_RootOrder
