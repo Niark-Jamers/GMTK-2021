@@ -91,11 +91,12 @@ public class Link : MonoBehaviour
         {
             Vector2 tmp = Quaternion.Euler(0, 0, multiShotStep * i) * baseDir;
             GameObject g = Instantiate(bulletPrefab, c.point, Quaternion.Euler(0, 0, 0));
+            g.tag = "PlayerBullet";
             Bullet b = g.GetComponent<Bullet>();
             b.rb = g.GetComponent<Rigidbody2D>();
             b.noMulti = true;
             b.resetValue(tmp, SetMods(tmod));
-            //Debug.DrawRay(c.point, tmp, Color.blue, 1f);
+            Debug.DrawRay(c.point, tmp, Color.blue, 1f);
         }
     }
 
@@ -194,7 +195,7 @@ public class Link : MonoBehaviour
             }
             col.gameObject.tag = "PlayerBullet";
             var r = col.gameObject.GetComponent<Rigidbody2D>();
-            Vector2 velocity = -col.contacts[0].normal * speed;
+            Vector2 velocity = col.contacts[0].normal * speed;
             Bullet tb = col.gameObject.GetComponent<Bullet>();
             Bullet.modifier tmod = tb.mod;
 

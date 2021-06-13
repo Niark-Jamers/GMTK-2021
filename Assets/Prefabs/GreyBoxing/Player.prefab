@@ -14675,7 +14675,7 @@ MonoBehaviour:
       zigzag: 1
       explosion: 1
       bounce: 1
-    multiShot: 13
+    multiShot: 3
   gg:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 1, a: 1}
@@ -14889,7 +14889,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2848584519356891888}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     public float bulletSpeed = 1;
 
     private Vector3 target;
+    private Vector3 target2;
+
     GameObject player;
     GameObject powerBall;
 
@@ -111,14 +113,19 @@ public class Enemy : MonoBehaviour
             //if (Vector3.Distance(transform.position, player.transform.position) < Vector3.Distance(transform.position, powerBall.transform.position))
            // {
                 target = player.transform.position;
+                target2 = powerBall.transform.position;
            // } else
            // {
             //    target = powerBall.transform.position;
             //}
+            Vector3 targetDiff = target2 - target;
+            float distFromT1 = Random.Range(-0.2f, 1.2f);
+            Vector3 trueTarget = target + targetDiff * distFromT1;
+
             var t = bulletFirePosition != null ? bulletFirePosition.transform.position : transform.position;
             var g = GameObject.Instantiate(bullet, t + -(t - target).normalized, Quaternion.identity);
             var r = g.GetComponent<Rigidbody2D>();
-            r.AddForce(-(t - target).normalized * bulletSpeed, ForceMode2D.Force);
+            r.AddForce(-(t - trueTarget).normalized * bulletSpeed, ForceMode2D.Force);
 
             if (shootClip)
                 AudioManager.PlayOnShot(shootClip, 0.5f);
