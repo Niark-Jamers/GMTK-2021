@@ -25,9 +25,14 @@ public class Enemy : MonoBehaviour
     public float aggroDistance = 10f;
     public float minPlayerDistance = 3f;
 
+    [Header("Turret")]
+    public bool turret = false;
+    // public Vector2 direction;
+
     [Header("Bullets")]
     public Transform bulletFirePosition = null;
     public float fireDelay = 1;
+
 
     [Header("Audio")]
     public AudioClip shootClip;
@@ -46,6 +51,11 @@ public class Enemy : MonoBehaviour
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+
+        if (turret)
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     int currentPoint = 0;
