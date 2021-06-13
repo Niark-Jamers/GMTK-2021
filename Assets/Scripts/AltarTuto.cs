@@ -39,5 +39,6 @@ public class AltarTuto : MonoBehaviour
         yield return new WaitForSeconds(0.3f);
         powerBall.SetActive(true);
         link.SetActive(true);
+        player.gameObject.GetComponent<SpriteRenderer>().material.SetFloat("Vector1_3d3385984e454112a860d8a8bf51e293", 2.3f);
     }
 }
