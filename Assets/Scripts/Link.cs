@@ -21,6 +21,9 @@ public class Link : MonoBehaviour
     //private BoxCollider2D selfCollider;
     GameObject player;
 
+    AudioSource audioSource;
+    public AudioClip vwoupvwoupClip;
+    public AudioClip overheatClip;
 
     LineRenderer line;
 
@@ -50,6 +53,12 @@ public class Link : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
         // line = GetComponent<LineRenderer>();
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = vwoupvwoupClip;
+        audioSource.loop = true;
+        audioSource.volume = 0;
+        audioSource.Play();
     }
 
     Bullet.modifier SetMods(Bullet.modifier tmod)
@@ -124,6 +133,7 @@ public class Link : MonoBehaviour
                 if (curHeat >= 100)
                 {
                     overHeating = true;
+                    AudioManager.PlayOnShot(overheatClip);
                     EnableLink(false);
                 }
             }
@@ -154,6 +164,11 @@ public class Link : MonoBehaviour
         var tmp = ps.colorOverLifetime;
         ModifyGradient(Slurp(Color.cyan, Color.red, curHeat / 100));
         tmp.color = g;
+
+        if (curHeat > 0 && !overHeating)
+            audioSource.volume = curHeat / 100.0f;
+        else
+            audioSource.volume = 0;
     }
 
     void OnCollisionEnter2D(Collision2D col)
