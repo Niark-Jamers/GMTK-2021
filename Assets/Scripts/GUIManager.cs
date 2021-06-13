@@ -35,6 +35,9 @@ public class GUIManager : MonoBehaviour
 
     [Header("Fade In")]
     public GameObject   levelFadeIn;
+    
+    [Header("Winner")]
+    public GameObject   winner;
 
     public void Awake()
     {
@@ -108,5 +111,10 @@ public class GUIManager : MonoBehaviour
     public void LoadNextLevel()
     {
         levelFadeIn.GetComponent<Animator>().enabled = true;
+    }
+
+    public void WinScreen()
+    {
+        winner.GetComponent<Animator>().enabled = true;
     }
 }

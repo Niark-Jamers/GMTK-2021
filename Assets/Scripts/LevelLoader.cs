@@ -5,6 +5,8 @@ public class LevelLoader : MonoBehaviour
 {
     bool activated = false;
 
+    public bool newGamePlus = false;
+
     void OnTriggerEnter2D(Collider2D collider2D)
     {
         if (activated)
@@ -23,6 +25,6 @@ public class LevelLoader : MonoBehaviour
         GUIManager.Instance.LoadNextLevel();
 
         yield return new WaitForSeconds(1);
-        GameManager.Instance.NextLevel();
+        GameManager.Instance.NextLevel(newGamePlus);
     }
 }

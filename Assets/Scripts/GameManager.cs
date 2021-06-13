@@ -97,8 +97,22 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void NextLevel()
+    public void NextLevel(bool newGamePlus = false)
     {
+        if (sceneNumber >= sceneList.Length)
+        {
+            if (newGamePlus)
+            {
+                // TODO: DO STUFF
+            }
+            else
+            {
+                GUIManager.Instance.WinScreen();
+            }
+
+            return;
+        }
+
         SceneManager.LoadScene(sceneList[sceneNumber + 1]);
     }
 
