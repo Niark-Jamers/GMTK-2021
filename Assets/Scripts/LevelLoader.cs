@@ -3,7 +3,6 @@ using System.Collections;
 
 public class LevelLoader : MonoBehaviour
 {
-    public string nextLevelName;
     bool activated = false;
 
     void OnTriggerEnter2D(Collider2D collider2D)

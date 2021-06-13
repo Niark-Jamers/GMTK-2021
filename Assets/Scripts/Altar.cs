@@ -32,7 +32,7 @@ public class Altar : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if (collider2D.tag == "Player" && !activated)
+        if (collider2D.tag == "Player" && !activated && isActiveAndEnabled)
         {
             GameManager.Instance.PowerRoulette();
             activated = true;
