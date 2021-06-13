@@ -90,7 +90,7 @@ public class GameManager : MonoBehaviour
             if (tmpAllPowerList.Count < 3)
             {
                 roulette.Add(new GUIPowers{ name = "DETERMINATION", mod = Mods.deter, image = determinationSprite} );
-            } else if (curPowerList.Contains(pow) && pow.mod != Mods.Multi)
+            } else if (curPowerList.Contains(pow) && pow.mod != Mods.Multi && pow.mod != Mods.bounce)
             {
                 tmpAllPowerList.Remove(pow);
                 continue ;
