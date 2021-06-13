@@ -60,6 +60,13 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+        SceneManager.sceneLoaded += Upgrwhjk;
+    }
+
+    void Upgrwhjk(Scene s, LoadSceneMode a)
+    {
+        foreach (var c in curPowerList)
+            AddPower(c.mod);
     }
 
     void Update()
@@ -83,7 +90,7 @@ public class GameManager : MonoBehaviour
             if (tmpAllPowerList.Count < 3)
             {
                 roulette.Add(new GUIPowers{ name = "DETERMINATION", mod = Mods.deter, image = determinationSprite} );
-            } else if (curPowerList.Contains(pow))
+            } else if (curPowerList.Contains(pow) && pow.mod != Mods.Multi && pow.mod != Mods.bounce)
             {
                 tmpAllPowerList.Remove(pow);
                 continue ;
@@ -115,6 +122,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
+                Debug.Log("HGIUWIOHGOI");
                 GUIManager.Instance.WinScreen();
             }
 
@@ -129,7 +137,14 @@ public class GameManager : MonoBehaviour
     {
         curPowerList.Add(roulette[nb]);
 
-        switch (roulette[nb].mod)
+        AddPower(roulette[nb].mod);
+
+        newPowerAdded?.Invoke();
+    }
+
+    void AddPower(Mods power)
+    {
+        switch (power)
         {
             case Mods.bounce:
                 FindObjectOfType<Link>().p.bMod.bounce += 2;
@@ -156,10 +171,7 @@ public class GameManager : MonoBehaviour
                 FindObjectOfType<Link>().p.bMod.zigzag = true;
                 break;
         }
-
-        newPowerAdded?.Invoke();
     }
-
 
     public void Exit()
     {

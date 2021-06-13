@@ -51,7 +51,8 @@ MonoBehaviour:
   - Level03
   bulletSpeedMultiplier: 1
   aggroZoneMultiplier: 1
-  determinationSprite: {fileID: 0}
+  determinationSprite: {fileID: 21300000, guid: e33073c12a1212141bb271ff12a51209,
+    type: 3}
   allPowerList:
   - name: Fire
     image: {fileID: 21300000, guid: 8b03ad0628d8cec43a17e35fbc3086e4, type: 3}
