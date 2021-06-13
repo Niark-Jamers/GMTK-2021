@@ -17,6 +17,7 @@ public class PowerBall : MonoBehaviour
     public float max = 3f;
 
     PixelPerfectCamera  cam;
+    new Rigidbody2D rigidbody2D;
 
     new Camera camera;
 
@@ -26,41 +27,77 @@ public class PowerBall : MonoBehaviour
         length = Vector3.Distance(transform.position, player.transform.position);
         camera = Camera.main;
         cam = FindObjectOfType<PixelPerfectCamera>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
+    // // Update is called once per frame
+    // void Update()
+    // {
+    //     // if (Input.GetKey(KeyCode.RightArrow))
+    //     //     angle += angleSpeed;
+    //     // if (Input.GetKey(KeyCode.LeftArrow))
+    //     //     angle -= angleSpeed;
+
+    //     // Trackball:
+    //     // transform.position = player.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
+
+    //     // Cancer control:
+    //     // transform.position += new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"), 0) * speed * Time.deltaTime;
+
+    //     var c = m / new Vector2(camera.pixelWidth, camera.pixelHeight);
+    //     c = new Vector2(Mathf.Clamp01(c.x), Mathf.Clamp01(c.y));
+    //     // c *= camera.orthographicSize;
+    //     c = c * 2 - 1 * Vector2.one;
+    //     c = camera.projectionMatrix.inverse.MultiplyPoint(c);
+    //     // c = camera.ViewportToWorldPoint(c);
+    //     // c = c + 0.5f * Vector2.one;
+    //     // c *= camera.orthographicSize;
+    //     // c += new Vector2(cam.transform.position.x, cam.transform.position.y);
+    //     // var p = c + (Vector2)camera.transform.position;
+
+
+    //     // transform.position = new Vector3(p.x, p.y, transform.position.z);
+    // }
+
+    Vector2 mousePosition;
     void Update()
     {
-        // if (Input.GetKey(KeyCode.RightArrow))
-        //     angle += angleSpeed;
-        // if (Input.GetKey(KeyCode.LeftArrow))
-        //     angle -= angleSpeed;
+        mousePosition = Input.mousePosition;
+    }
 
-        // Trackball:
-        // transform.position = player.transform.position + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
-
-        // Cancer control:
-        // transform.position += new Vector3(Input.GetAxisRaw("Horizontal2"), Input.GetAxisRaw("Vertical2"), 0) * speed * Time.deltaTime;
-
-        var m = (Vector2)Input.mousePosition + new Vector2(-2, 0);
-        var c = m / new Vector2(camera.pixelWidth, camera.pixelHeight);
-        c = new Vector2(Mathf.Clamp01(c.x), Mathf.Clamp01(c.y));
-        // c *= camera.orthographicSize;
-        c = c * 2 - 1 * Vector2.one;
-        c = camera.projectionMatrix.inverse.MultiplyPoint(c);
-        // c = camera.ViewportToWorldPoint(c);
-        // c = c + 0.5f * Vector2.one;
-        // c *= camera.orthographicSize;
-        // c += new Vector2(cam.transform.position.x, cam.transform.position.y);
-        // var p = c + (Vector2)camera.transform.position;
+    void FixedUpdate()
+    {
+        var m = mousePosition;
         var p = camera.ScreenToWorldPoint(new Vector3(m.x, m.y, camera.nearClipPlane));
 
         float distance = Vector2.Distance(player.transform.position, p);
-        // Debug.Log(((Vector2)p - (Vector2)player.transform.position).normalized);
-        transform.position = player.transform.position + (Vector3)(Mathf.Clamp(distance, min, max) * ((Vector2)p - (Vector2)player.transform.position).normalized);
+        var movement = (Mathf.Clamp(distance, min, max) * ((Vector2)p - (Vector2)player.transform.position).normalized);
 
-        // transform.position = new Vector3(p.x, p.y, transform.position.z);
+        float d = Mathf.Clamp(distance, min, max);
+        var finalPos = (Vector2)player.transform.position + (d * ((Vector2)p - (Vector2)player.transform.position).normalized);
+
+        // var results = new RaycastHit2D[2];
+        // Physics2D.RaycastNonAlloc(transform.position, p - transform.position, results, d, 1);
+
+        // Debug.DrawRay(transform.position, p - transform.position, Color.blue, 0.5f);
+
+        // if (results[1].collider != null)
+        //     finalPos = results[1].point;
+        
+        // // Clamp final pos distance:
+        // Vector2 dir = (Vector2)finalPos - (Vector2)player.transform.position;
+        // float l = Mathf.Clamp(dir.magnitude, min, max);
+        // finalPos = (Vector2)player.transform.position + dir.normalized * l;
+
+        // Debug.Log(finalPos);
+        
+        rigidbody2D.MovePosition(finalPos);
+
+        // Glitched
+        if (Vector2.Distance(player.transform.position, transform.position) > max + 0.4f)
+            transform.position = player.transform.position;
     }
+
     void OnCollisionEnter2D(Collision2D col)
     {
         if (player.GetComponent<Player>().dead)

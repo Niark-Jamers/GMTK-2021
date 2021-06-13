@@ -25,9 +25,14 @@ public class Enemy : MonoBehaviour
     public float aggroDistance = 10f;
     public float minPlayerDistance = 3f;
 
+    [Header("Turret")]
+    public bool turret = false;
+    // public Vector2 direction;
+
     [Header("Bullets")]
     public Transform bulletFirePosition = null;
     public float fireDelay = 1;
+
 
     [Header("Audio")]
     public AudioClip shootClip;
@@ -35,6 +40,7 @@ public class Enemy : MonoBehaviour
 
     Animator        animator;
     new SpriteRenderer  renderer;
+    new Rigidbody2D     rigidbody2D;
     bool            dead;
 
     void Start()
@@ -44,26 +50,31 @@ public class Enemy : MonoBehaviour
 
         animator = GetComponent<Animator>();
         renderer = GetComponent<SpriteRenderer>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+
+        if (turret)
+        {
+            StartCoroutine(Shoot());
+        }
     }
 
     int currentPoint = 0;
+    Vector2 movement = Vector3.zero;
     void Update()
     {
         if (dead)
             return;
 
-        Vector2 movement = Vector3.zero;
-
         if (patrol && !isAggro)
         {
             var target = controlsPoints[currentPoint].transform.position;
-            movement = Vector2.MoveTowards(transform.position, target, Time.deltaTime * moveSpeed);
+            movement = (target - transform.position).normalized * Time.deltaTime * moveSpeed;
             if (Vector2.Distance((Vector2)transform.position, target) < 0.1f)
                 currentPoint = (currentPoint + 1) % controlsPoints.Length;
         }
 
         float distance = Vector2.Distance(player.transform.position, transform.position);
-        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
+        // Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
         if (aggro)
         {
             if (distance < aggroDistance && !isAggro)
@@ -80,16 +91,9 @@ public class Enemy : MonoBehaviour
         }
 
         if (isAggro && distance > minPlayerDistance)
-        {
-            movement = Vector2.MoveTowards(transform.position, player.transform.position, Time.deltaTime * moveSpeed);
-        }
+            movement = (player.transform.position - transform.position).normalized * Time.deltaTime * moveSpeed;
 
-        if (movement.magnitude > 0.0f)
-            movement -= (Vector2)transform.position;
-        else
-            movement = Vector2.zero;
-
-        transform.position += (Vector3)movement;
+        rigidbody2D.MovePosition((Vector2)rigidbody2D.position + movement);
 
         if (animator != null)
         {
@@ -151,7 +155,8 @@ public class Enemy : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger("Death");
             if (deathClip != null)
-                AudioManager.PlayOnShot(deathClip);
+                AudioManager.PlayOnShot(deathClip, 0.5f);
+                GetComponent<Collider2D>().enabled = false;
             
             dead = true;
         }

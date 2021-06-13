@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     Animator        animator;
     SpriteRenderer  spriteRenderer;
     new Rigidbody2D     rigidbody2D;
+    PowerBall       powerBall;
     public bool dead = false;
 
     public bool freeMovements = false;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         rigidbody2D = GetComponent<Rigidbody2D>();
+        powerBall = FindObjectOfType<PowerBall>();
         // player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -31,7 +33,17 @@ public class Player : MonoBehaviour
     {
         if (dead || freeMovements)
             return;
+
         var movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+
+        // // Glitched by physic:
+        // float d1 = Vector2.Distance((Vector2)powerBall.transform.position, (Vector2)transform.position);
+        // if (d1 > powerBall.max + 0.5f)
+        // {
+        //     if (d1 < Vector2.Distance((Vector2)powerBall.transform.position, (Vector2)transform.position + movement))
+        //         movement = Vector2.zero;
+        // }
+
         rigidbody2D.MovePosition(rigidbody2D.position + movement * speed * Time.fixedDeltaTime);
 
         animator.SetFloat("MoveX", movement.x);
