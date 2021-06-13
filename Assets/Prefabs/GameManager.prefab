@@ -48,6 +48,9 @@ MonoBehaviour:
   - Tuto02
   - Level01
   - Level02
+  - Level03
+  bulletSpeedMultiplier: 1
+  aggroZoneMultiplier: 1
   determinationSprite: {fileID: 0}
   allPowerList:
   - name: Fire

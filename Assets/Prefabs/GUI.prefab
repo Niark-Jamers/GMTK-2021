@@ -147,7 +147,6 @@ GameObject:
   - component: {fileID: 257968322}
   - component: {fileID: 257968321}
   - component: {fileID: 257968320}
-  - component: {fileID: 257968319}
   m_Layer: 5
   m_Name: Winner
   m_TagString: Untagged
@@ -232,21 +231,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &257968319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257968317}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a3c8e9770a1eb48a7c334c66b0506c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  time: 4
-  offset: 0.6
-  inTransition: 0
 --- !u!1 &284492883
 GameObject:
   m_ObjectHideFlags: 0

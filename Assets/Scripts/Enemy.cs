@@ -77,7 +77,7 @@ public class Enemy : MonoBehaviour
         // Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
         if (aggro)
         {
-            if (distance < aggroDistance && !isAggro)
+            if (distance < aggroDistance * GameManager.Instance.aggroZoneMultiplier && !isAggro)
             {
                 RaycastHit2D[] results = new RaycastHit2D[2];
                 var hit = Physics2D.RaycastNonAlloc(transform.position, player.transform.position - transform.position, results, aggroDistance, 1);
@@ -130,7 +130,7 @@ public class Enemy : MonoBehaviour
             var t = bulletFirePosition != null ? bulletFirePosition.transform.position : transform.position;
             var g = GameObject.Instantiate(bullet, t + -(t - target).normalized, Quaternion.identity);
             var r = g.GetComponent<Bullet>();
-            r.direction = (-(t - trueTarget).normalized * bulletSpeed);
+            r.direction = (-(t - trueTarget).normalized * bulletSpeed * GameManager.Instance.bulletSpeedMultiplier);
 
             if (shootClip)
                 AudioManager.PlayOnShot(shootClip, 0.5f);
