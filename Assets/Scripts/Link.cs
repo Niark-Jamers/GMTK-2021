@@ -16,6 +16,7 @@ public class Link : MonoBehaviour
 
     public ParticleSystem ps;
     public ParticleSystem psSub;
+    public ParticleSystem damagePS;
     public Material spriteMaterial;
     public Material outlineMaterial;
 
@@ -31,7 +32,7 @@ public class Link : MonoBehaviour
     LineRenderer line;
 
     public GameObject bulletPrefab;
-    public float speed = 2f;
+    public float speed = 20f;
     public float multiShotStep = 15;
 
     bool dead = false;
@@ -60,11 +61,11 @@ public class Link : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
         subSpeedDrag = psSub.limitVelocityOverLifetime.drag.constant;
-        Debug.Log(subSpeedDrag);
+        // Debug.Log(subSpeedDrag);
         audioSource = gameObject.GetComponent<AudioSource>();
         if (audioSource == null)
             audioSource = gameObject.AddComponent<AudioSource>();
-        
+
         audioSource.clip = vwoupvwoupClip;
         audioSource.loop = true;
         audioSource.volume = 0;
@@ -79,7 +80,7 @@ public class Link : MonoBehaviour
         tmod.ice = (tmod.ice) ? tmod.ice : p.bMod.ice;
         tmod.zigzag = (tmod.zigzag) ? tmod.zigzag : p.bMod.zigzag;
         tmod.explosion = (tmod.explosion) ? tmod.explosion : p.bMod.explosion;
-        tmod.bounce = (tmod.bounce) ? tmod.bounce : p.bMod.bounce;
+        tmod.bounce = p.bMod.bounce;
 
         return tmod;
     }
@@ -95,8 +96,10 @@ public class Link : MonoBehaviour
             g.tag = "PlayerBullet";
             Bullet b = g.GetComponent<Bullet>();
             b.rb = g.GetComponent<Rigidbody2D>();
+            b.sr = GetComponent<SpriteRenderer>();
             b.noMulti = true;
-            b.resetValue(tmp, SetMods(tmod));
+            b.protecDown = false;
+            b.resetValue(tmp * speed, SetMods(tmod));
             Debug.DrawRay(c.point, tmp, Color.blue, 1f);
         }
     }
@@ -187,45 +190,67 @@ public class Link : MonoBehaviour
     {
         if (dead)
             return;
+        if (col.gameObject.tag == "PlayerBullet")
+        {
+            var r = col.gameObject.GetComponent<Rigidbody2D>();
+            Bullet tb = col.gameObject.GetComponent<Bullet>();
+            if (tb.protecDown)
+            {
+                Vector2 velocity = -col.contacts[0].normal * speed;
+                if (tb.mod.bounce > 0)
+                {
 
+                    Bullet.modifier tmod = tb.mod;
+                    tb.mod.bounce--;
+                    tb.resetValue(Vector3.Reflect(tb.direction, -col.contacts[0].normal));
+                }
+                else
+                {
+                    Destroy(col.gameObject);
+                }
+            }
+        }
         if (col.gameObject.tag == "EnemyBullet")
         {
             if (!linkActive)
             {
-                TakeHit();
+                TakeHit(col.contacts[0].point);
                 Destroy(col.gameObject);
                 return;
             }
-            else {
+            else
+            {
                 col.gameObject.tag = "PlayerBullet";
                 var r = col.gameObject.GetComponent<Rigidbody2D>();
                 Bullet tb = col.gameObject.GetComponent<Bullet>();
                 Vector2 velocity = -col.contacts[0].normal * speed;
                 Bullet.modifier tmod = tb.mod;
-            if (tb.noMulti == false)
-            {
-                if (p.multiShot > 0)
+                if (tb.noMulti == false)
                 {
-                    MoultiShotage(velocity, col.contacts[0], tmod);
-                    Destroy(col.gameObject);
-                }
-                else
-                {
-                    Debug.Log("renvoi");
-                    col.gameObject.GetComponent<Bullet>().resetValue(velocity, SetMods(tmod));
+                    if (p.multiShot > 0)
+                    {
+                        MoultiShotage(velocity, col.contacts[0], tmod);
+                        Destroy(col.gameObject);
+                    }
+                    else
+                    {
+                        Debug.Log("renvoi");
+                        col.gameObject.GetComponent<Bullet>().resetValue(velocity, SetMods(tmod));
+                    }
                 }
             }
-            }
-            
+
         }
     }
 
-    public void TakeHit()
+    public void TakeHit(Vector2 pos)
     {
+        damagePS.gameObject.transform.position = pos;
+        damagePS.Play();
         var p = player.GetComponent<Player>();
         p.lifePoints -= 1;
         GUIManager.Instance.UpdateLife(p.lifePoints);
-        Debug.Log(p.lifePoints);
+        //        Debug.Log(p.lifePoints);
 
         if (p.lifePoints == 0)
         {
@@ -260,7 +285,7 @@ public class Link : MonoBehaviour
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
             var tmp = psSub.limitVelocityOverLifetime;
             var stmp = tmp.drag;
-            stmp.constant = subSpeedDrag /5;
+            stmp.constant = subSpeedDrag / 5;
             tmp.drag = stmp;
             // Debug.Log(psSub.limitVelocityOverLifetime.drag.constant);
             // var tmp = ps.velocityOverLifetime;

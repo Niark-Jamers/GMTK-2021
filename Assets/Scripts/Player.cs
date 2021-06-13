@@ -68,7 +68,7 @@ public class Player : MonoBehaviour
 
         if (col.gameObject.tag == "EnemyBullet")
         {
-            FindObjectOfType<Link>().TakeHit();
+            FindObjectOfType<Link>().TakeHit(col.contacts[0].point);
         }
     }
 

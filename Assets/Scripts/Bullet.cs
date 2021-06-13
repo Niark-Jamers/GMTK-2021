@@ -8,7 +8,7 @@ public class Bullet : MonoBehaviour
 
     [HideInInspector]
     public Rigidbody2D rb;
-    SpriteRenderer sr;
+    public SpriteRenderer sr;
 
     public GameObject fire;
     public GameObject ice;
@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
         public bool ice;
         public bool zigzag;
         public bool explosion;
-        public bool bounce;
+        public int bounce;
     }
 
     [SerializeField]
@@ -59,12 +59,18 @@ public class Bullet : MonoBehaviour
 
     float protec = 0.4f;
     float protecTimer = 0;
-   bool protecDown = true;
+    public bool protecDown = false;
 
+    int bounceCount = 0;
+
+    [Header("MATERIAL")]
+    public Material playerBulletMat;
+    public Material ennemyBulletMat;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
         // Vector2 tmp = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 500;
         // rb.AddForce(tmp);
         // direction = tmp.normalized;
@@ -73,8 +79,11 @@ public class Bullet : MonoBehaviour
         bounceAltTimer = bounceTimer / 2;
         zzAltTimer = zzTimer / 2;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
+        CheckMat();
         ActivateModifier();
     }
+
+
 
     void ActivateFire(bool t)
     {
@@ -88,7 +97,7 @@ public class Bullet : MonoBehaviour
 
     void ActivateLaser(bool t)
     {
-        if (rb == null)
+        if (rb == null || t == false)
             return;
         laser.SetActive(false);
         laser.SetActive(t);
@@ -141,17 +150,19 @@ public class Bullet : MonoBehaviour
         direction = dir;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;
+        CheckMat();
         ActivateModifier();
     }
 
     public void resetValue(Vector3 dir, modifier tmod)
     {
         rb.velocity = dir;
-        Debug.Log(rb.velocity);
+        //Debug.Log(rb.velocity);
         direction = dir;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;
         mod = tmod;
+        CheckMat();
         ActivateModifier();
     }
 
@@ -168,6 +179,14 @@ public class Bullet : MonoBehaviour
         transform.localScale = Vector3.Lerp(transform.localScale, BaseScale * ((isGoBig) ? 1 + sizeMult : 1 - sizeMult), Time.deltaTime);
     }
 
+    void CheckMat()
+    {
+        if (tag == "EnemyBullet")
+            sr.material = ennemyBulletMat;
+        if (tag == "PlayerBullet")
+            sr.material = playerBulletMat;
+    }
+
     public void ActivateModifier()
     {
         ActivateFire(mod.fire);
@@ -176,14 +195,23 @@ public class Bullet : MonoBehaviour
         ActivateLaser(mod.laser);
     }
 
+    void DoGoodRota()
+    {
+        //Vector2 diff = direction - (Vector2)this.transform.position;
+        float rot_z = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.localRotation = Quaternion.Euler(0f, 0f, rot_z - 90);
+    }
+
     private void Update()
     {
+        DoGoodRota();
         if (protecDown == false)
             protecTimer += Time.deltaTime;
         if (protecTimer > protec)
             protecDown = true;
-        if (mod.bounce)
+        if (mod.bounce > 0)
             Bounce();
+
         Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
         Debug.DrawRay(transform.position, zzDir, Color.blue, Time.deltaTime);
 
@@ -201,7 +229,9 @@ public class Bullet : MonoBehaviour
     private void FixedUpdate()
     {
         if (mod.zigzag)
+        {
             ZigZag();
+        }
         else
             rb.velocity = direction;
     }
@@ -217,16 +247,21 @@ public class Bullet : MonoBehaviour
             playBoom();
         if (other.gameObject.tag == "Link")
             return;
-        if (mod.bounce)
+        if (mod.bounce > 0)
+        {
+            mod.bounce--;
             resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
+        }
         else if (this.tag == "EnemyBullet" && other.gameObject.tag == "Enemy")
             return;
         else
-            {
-                Debug.Log("suside");
-                Destroy(this.gameObject);}
-
+        {
+            //Debug.Log("suside");
+            Destroy(this.gameObject);
+        }
     }
+
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

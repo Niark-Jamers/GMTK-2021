@@ -63,8 +63,14 @@ public class GameManager : MonoBehaviour
     {
     }
 
+    public int BounceCount()
+    {
+        return (curPowerList.FindAll(x => x.mod == Mods.bounce).Count);
+    }
+
     public void PowerRoulette()
-    { 
+    {
+        Time.timeScale = 0;
         FindObjectOfType<Player>().freeMovements = true;
         roulette = new List<GUIPowers>();
         tmpAllPowerList = (allPowerList).ToList();
@@ -104,7 +110,7 @@ public class GameManager : MonoBehaviour
         switch (roulette[nb].mod)
         {
             case Mods.bounce:
-                FindObjectOfType<Link>().p.bMod.bounce = true;
+                FindObjectOfType<Link>().p.bMod.bounce += 2;
                 break;
             case Mods.deter:
                 // Haha
