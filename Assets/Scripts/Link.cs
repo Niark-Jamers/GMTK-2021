@@ -217,11 +217,12 @@ public class Link : MonoBehaviour
 
     public void TakeHit()
     {
-        int newHP = player.GetComponent<Player>().lifePoints--;
-        GUIManager.Instance.UpdateLife(newHP);
+        var p = player.GetComponent<Player>();
+        p.lifePoints -= 1;
+        GUIManager.Instance.UpdateLife(p.lifePoints);
+        Debug.Log(p.lifePoints);
 
-
-        if (newHP == 0)
+        if (p.lifePoints == 0)
         {
             CameraManager.Shake(10, 0.6f);
             StartCoroutine(Death());

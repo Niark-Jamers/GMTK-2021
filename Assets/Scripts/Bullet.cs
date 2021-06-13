@@ -87,6 +87,8 @@ public class Bullet : MonoBehaviour
 
     void ActivateLaser(bool t)
     {
+        if (rb == null)
+            return;
         laser.SetActive(false);
         laser.SetActive(t);
         laserps = laser.GetComponent<ParticleSystem>();
