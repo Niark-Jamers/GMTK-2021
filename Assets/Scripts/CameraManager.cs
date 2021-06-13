@@ -20,6 +20,7 @@ public class CameraManager : MonoBehaviour
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
+    static bool isShaking = false;
     public static void Shake(float amplitude = 3, float duration = 0.1f)
     {
         instance.noise.m_AmplitudeGain = amplitude;
@@ -29,6 +30,7 @@ public class CameraManager : MonoBehaviour
 
         IEnumerator UpdateAmplitude()
         {
+            isShaking = true;
             float t = Time.time;
             while (Time.time - t < duration)
             {
@@ -37,11 +39,13 @@ public class CameraManager : MonoBehaviour
             }
         }
 
+        isShaking = false;
         instance.noise.m_AmplitudeGain = 0;
     }
 
     void Update()
     {
-        
+        if (!isShaking)
+            instance.noise.m_AmplitudeGain = 0;
     }
 }
