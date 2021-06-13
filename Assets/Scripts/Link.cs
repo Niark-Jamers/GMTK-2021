@@ -52,11 +52,6 @@ public class Link : MonoBehaviour
     GradientColorKey[] ck = new GradientColorKey[2];
     GradientAlphaKey[] ak = new GradientAlphaKey[2];
 
-    float subSpeedMinX;
-    float subSpeedMinY;
-    float subSpeedMaxX;
-    float subSpeedMaxY;
-
     float subSpeedDamp;
 
     void Start()
@@ -103,7 +98,7 @@ public class Link : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         UpdateHeat();
         heatBar.value = curHeat;
@@ -241,6 +236,8 @@ public class Link : MonoBehaviour
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 8);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
+            var tmp = psSub.limitVelocityOverLifetime.drag;
+            tmp.constant = subSpeedDamp * 0.9f;
             // var tmp = ps.velocityOverLifetime;
             // var mmtmp = tmp.x;
             // mmtmp.constantMin = subSpeedMinX * 10;
@@ -253,6 +250,8 @@ public class Link : MonoBehaviour
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 2f);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 2f);
+            var tmp = psSub.limitVelocityOverLifetime.drag;
+            tmp.constant = subSpeedDamp;
             // var tmp = ps.velocityOverLifetime;
             // var mmtmp = tmp.x;
             // mmtmp.constantMin = subSpeedMinX;
