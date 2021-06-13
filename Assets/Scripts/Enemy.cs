@@ -63,12 +63,13 @@ public class Enemy : MonoBehaviour
         }
 
         float distance = Vector2.Distance(player.transform.position, transform.position);
+        Debug.DrawRay(transform.position, player.transform.position - transform.position, Color.green);
         if (aggro)
         {
             if (distance < aggroDistance && !isAggro)
             {
                 RaycastHit2D[] results = new RaycastHit2D[2];
-                var hit = Physics2D.RaycastNonAlloc(transform.position, player.transform.position - transform.position, results);
+                var hit = Physics2D.RaycastNonAlloc(transform.position, player.transform.position - transform.position, results, aggroDistance, 1);
                 // results[0] is always the enemy
                 if (results[1].collider != null && results[1].collider.tag == "Player")
                 {
@@ -151,6 +152,7 @@ public class Enemy : MonoBehaviour
                 animator.SetTrigger("Death");
             if (deathClip != null)
                 AudioManager.PlayOnShot(deathClip);
+            
             dead = true;
         }
     }
