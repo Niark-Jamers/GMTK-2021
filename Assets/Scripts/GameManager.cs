@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,11 +13,33 @@ public class GameManager : MonoBehaviour
     string curScene;
     int sceneNumber;
 
+    public enum Mods
+    {
+        laser,
+        fire,
+        ice,
+        zigzag,
+        explosion,
+        bounce,
+        Multi,
+        deter,
+    }
+
+    [System.Serializable]
+    public class GUIPowers
+    {
+        public string name;
+        public Sprite image;
+        public Mods mod;
+    }
+
+    public Sprite determinationSprite;
+
     [Header("Power Management")]
-    public List<string> allPowerList;
-    public List<string> curPowerList;
-    private List<string> tmpAllPowerList;
-    private List<string> roulette;
+    public List<GUIPowers> allPowerList;
+    public List<GUIPowers> curPowerList;
+    private List<GUIPowers> tmpAllPowerList;
+    private List<GUIPowers> roulette;
     private string tmpPow;
 
 
@@ -42,14 +65,15 @@ public class GameManager : MonoBehaviour
 
     public void PowerRoulette()
     { 
-        roulette = new List<string>();
-        tmpAllPowerList = new List<string>(allPowerList);
+        FindObjectOfType<Player>().freeMovements = true;
+        roulette = new List<GUIPowers>();
+        tmpAllPowerList = (allPowerList).ToList();
         while (roulette.Count < 4)
         {
-            string pow = tmpAllPowerList[Random.Range(0, tmpAllPowerList.Count)];
+            var pow = tmpAllPowerList[Random.Range(0, tmpAllPowerList.Count)];
             if (tmpAllPowerList.Count < 3)
             {
-                roulette.Add("DETERMINATION");
+                roulette.Add(new GUIPowers{ name = "DETERMINATION", mod = Mods.deter, image = determinationSprite} );
             } else if (curPowerList.Contains(pow))
             {
                 tmpAllPowerList.Remove(pow);
@@ -72,9 +96,40 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(sceneList[sceneNumber + 1]);
     }
 
+    public event System.Action newPowerAdded;
     public void AddNewPower(int nb)
     {
         curPowerList.Add(roulette[nb]);
+
+        switch (roulette[nb].mod)
+        {
+            case Mods.bounce:
+                FindObjectOfType<Link>().p.bMod.bounce = true;
+                break;
+            case Mods.deter:
+                // Haha
+                break;
+            case Mods.explosion:
+                FindObjectOfType<Link>().p.bMod.explosion = true;
+                break;
+            case Mods.fire:
+                FindObjectOfType<Link>().p.bMod.fire = true;
+                break;
+            case Mods.ice:
+                FindObjectOfType<Link>().p.bMod.ice = true;
+                break;
+            case Mods.laser:
+                FindObjectOfType<Link>().p.bMod.laser = true;
+                break;
+            case Mods.Multi:
+                FindObjectOfType<Link>().p.multiShot += 2;
+                break;
+            case Mods.zigzag:
+                FindObjectOfType<Link>().p.bMod.zigzag = true;
+                break;
+        }
+
+        newPowerAdded?.Invoke();
     }
 
 

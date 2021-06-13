@@ -87,6 +87,8 @@ public class Bullet : MonoBehaviour
 
     void ActivateLaser(bool t)
     {
+        if (rb == null)
+            return;
         laser.SetActive(false);
         laser.SetActive(t);
         laserps = laser.GetComponent<ParticleSystem>();
@@ -144,6 +146,7 @@ public class Bullet : MonoBehaviour
     public void resetValue(Vector3 dir, modifier tmod)
     {
         rb.velocity = dir;
+        Debug.Log(rb.velocity);
         direction = dir;
         zzDir = Vector3.Cross(direction, (zzGoRight) ? Vector3.forward : Vector3.back).normalized;
         zzAltTimer = zzTimer / 2;
@@ -229,7 +232,7 @@ public class Bullet : MonoBehaviour
             else
                 resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
         }
-        else if (other.gameObject.tag == "Wall")
+        else if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Link")
         {
             Destroy(this.gameObject);
         }

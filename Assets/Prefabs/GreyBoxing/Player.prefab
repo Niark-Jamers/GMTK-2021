@@ -14663,19 +14663,20 @@ MonoBehaviour:
   outlineMaterial: {fileID: 2100000, guid: 47e6769dc337ff243b829a2d3f773b3c, type: 2}
   vwoupvwoupClip: {fileID: 8300000, guid: 745c7b78bbe68f64482be4de1a0a22e4, type: 3}
   overheatClip: {fileID: 8300000, guid: fbcf6eaa344ba8b44a4a26d69cda1331, type: 3}
+  hitClip: {fileID: 8300000, guid: 01f7ba58cf5258647813c9d953000be9, type: 3}
   bulletPrefab: {fileID: 1124802163566534960, guid: cd5a860ace987404a9320e5b4dd25850,
     type: 3}
   speed: 2
   multiShotStep: 15
   p:
     bMod:
-      laser: 1
-      fire: 1
-      ice: 1
-      zigzag: 1
-      explosion: 1
-      bounce: 1
-    multiShot: 3
+      laser: 0
+      fire: 0
+      ice: 0
+      zigzag: 0
+      explosion: 0
+      bounce: 0
+    multiShot: 1
   gg:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 1, a: 1}
@@ -15501,7 +15502,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  deathClip: {fileID: 0}
+  lifePoints: 3
+  deathClip: {fileID: 8300000, guid: df42728461048e343a5352a05fb7b8e4, type: 3}
+  freeMovements: 0
 --- !u!212 &3907685799790402765
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -15621,6 +15624,7 @@ GameObject:
   - component: {fileID: 2770631085847005486}
   - component: {fileID: 6830457479920743996}
   - component: {fileID: 4611986293236396982}
+  - component: {fileID: 2059941230}
   m_Layer: 0
   m_Name: Ball
   m_TagString: PowerBall
@@ -15635,7 +15639,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9148340609074320578}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.4371528, w: 0.89938724}
   m_LocalPosition: {x: 2.14, y: 1.73, z: 0}
   m_LocalScale: {x: 1.771, y: 1.771, z: 1.771}
   m_Children:
@@ -15715,6 +15719,47 @@ MonoBehaviour:
   speed: 10
   min: 1.5
   max: 4
+--- !u!114 &2059941230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148340609074320578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 3
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.8632076, g: 0.9746269, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: c3e8a4ea196d85764d103c0da9d0776800000000df1541744f1c97a2
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 12.02
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
 --- !u!1001 &3741745645432079022
 PrefabInstance:
   m_ObjectHideFlags: 0
