@@ -101,7 +101,7 @@ public class Link : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         UpdateHeat();
         heatBar.value = curHeat;
@@ -239,6 +239,8 @@ public class Link : MonoBehaviour
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 8);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
+        
+            
             // var tmp = ps.velocityOverLifetime;
             // var mmtmp = tmp.x;
             // mmtmp.constantMin = subSpeedMinX * 10;
