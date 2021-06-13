@@ -65,8 +65,14 @@ public class Enemy : MonoBehaviour
         {
             if (distance < aggroDistance && !isAggro)
             {
-                StartCoroutine(Shoot());
-                isAggro = true;
+                RaycastHit2D[] results = new RaycastHit2D[2];
+                var hit = Physics2D.RaycastNonAlloc(transform.position, player.transform.position - transform.position, results);
+                // results[0] is always the enemy
+                if (results[1].collider != null && results[1].collider.tag == "Player")
+                {
+                    StartCoroutine(Shoot());
+                    isAggro = true;
+                }
             }
         }
 
