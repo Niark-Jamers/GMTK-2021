@@ -17639,20 +17639,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1174384036 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2196471515107623511, guid: 1935bb21c390e90409040d3a64621fa3,
-    type: 3}
-  m_PrefabInstance: {fileID: 1530901498}
-  m_PrefabAsset: {fileID: 0}
---- !u!81 &1174384037
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1174384036}
-  m_Enabled: 1
 --- !u!1001 &1244706194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17951,70 +17937,6 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 1672536087}
-    - target: {fileID: 1311238083, guid: 1935bb21c390e90409040d3a64621fa3, type: 3}
-      propertyPath: m_Lens.OrthographicSize
-      value: 21.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_AssetsPPU
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_UpscaleRT
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_CropFrameX
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_CropFrameY
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_StretchFill
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_RefResolutionX
-      value: 640
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623496, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_RefResolutionY
-      value: 360
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: orthographic size
-      value: 21.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2196471515107623498, guid: 1935bb21c390e90409040d3a64621fa3,
-        type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2196471515107623499, guid: 1935bb21c390e90409040d3a64621fa3,
         type: 3}
       propertyPath: m_RootOrder
