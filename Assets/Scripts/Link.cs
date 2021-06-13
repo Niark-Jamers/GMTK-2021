@@ -57,7 +57,9 @@ public class Link : MonoBehaviour
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
         // line = GetComponent<LineRenderer>();
 
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.clip = vwoupvwoupClip;
         audioSource.loop = true;
         audioSource.volume = 0;

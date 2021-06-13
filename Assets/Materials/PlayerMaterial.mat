@@ -42,4 +42,5 @@ Material:
     - Color_6467b4745ffa4b259ae768721b579489: {r: 0, g: 0.7296103, b: 1.319508, a: 1}
     - Vector2_bfe76644630c4d2aa3b2952b587f5473: {r: 64, g: 64, b: 0, a: 0}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _OutlineColor: {r: 2, g: 2, b: 2, a: 2}
   m_BuildTextureStacks: []
