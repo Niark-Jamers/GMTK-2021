@@ -124,8 +124,8 @@ public class Enemy : MonoBehaviour
 
             var t = bulletFirePosition != null ? bulletFirePosition.transform.position : transform.position;
             var g = GameObject.Instantiate(bullet, t + -(t - target).normalized, Quaternion.identity);
-            var r = g.GetComponent<Rigidbody2D>();
-            r.AddForce(-(t - trueTarget).normalized * bulletSpeed, ForceMode2D.Force);
+            var r = g.GetComponent<Bullet>();
+            r.direction = (-(t - trueTarget).normalized * bulletSpeed);
 
             if (shootClip)
                 AudioManager.PlayOnShot(shootClip, 0.5f);

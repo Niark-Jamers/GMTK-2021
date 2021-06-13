@@ -59,6 +59,7 @@ public class Bullet : MonoBehaviour
 
     float protec = 0.4f;
     float protecTimer = 0;
+   bool protecDown = true;
 
     // Start is called before the first frame update
     void Start()
@@ -67,7 +68,7 @@ public class Bullet : MonoBehaviour
         // Vector2 tmp = new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized * 500;
         // rb.AddForce(tmp);
         // direction = tmp.normalized;
-        direction = rb.velocity;
+        //direction = rb.velocity;
         BaseScale = transform.localScale;
         bounceAltTimer = bounceTimer / 2;
         zzAltTimer = zzTimer / 2;
@@ -177,8 +178,10 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (protecTimer < protec)
+        if (protecDown == false)
             protecTimer += Time.deltaTime;
+        if (protecTimer > protec)
+            protecDown = true;
         if (mod.bounce)
             Bounce();
         Debug.DrawRay(transform.position, direction, Color.red, Time.deltaTime);
@@ -199,6 +202,8 @@ public class Bullet : MonoBehaviour
     {
         if (mod.zigzag)
             ZigZag();
+        else
+            rb.velocity = direction;
     }
 
     private void OnValidate()
@@ -208,42 +213,19 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Player")
-        {
-            if (mod.explosion)
-                playBoom();
-            Destroy(gameObject);
-            return;
-        }
-
-        if (mod.bounce)
-        {
-            if (other.gameObject.tag == "Link" && protecTimer > protec)
-            {
-                var tmp = other.gameObject.GetComponent<Link>();
-                if (tmp.linkActive)
-                {
-                    protecTimer = 0;
-                    resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
-                }
-                else
-                    Destroy(gameObject);
-            }
-            else
-                resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
-        }
-        else if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Link")
-        {
-            Destroy(this.gameObject);
-        }
-        // if (mod.laser)
-        // {
-        //     PauseLaser();
-        // }
         if (mod.explosion)
-        {
             playBoom();
-        }
+        if (other.gameObject.tag == "Link")
+            return;
+        if (mod.bounce)
+            resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
+        else if (this.tag == "EnemyBullet" && other.gameObject.tag == "Enemy")
+            return;
+        else
+            {
+                Debug.Log("suside");
+                Destroy(this.gameObject);}
+
     }
 
     private void OnTriggerEnter2D(Collider2D other)
