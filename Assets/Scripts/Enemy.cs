@@ -151,7 +151,8 @@ public class Enemy : MonoBehaviour
             if (animator != null)
                 animator.SetTrigger("Death");
             if (deathClip != null)
-                AudioManager.PlayOnShot(deathClip);
+                AudioManager.PlayOnShot(deathClip, 0.5f);
+                GetComponent<Collider2D>().enabled = false;
             
             dead = true;
         }

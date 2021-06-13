@@ -14912,7 +14912,8 @@ AudioSource:
   m_GameObject: {fileID: 2848584519356891888}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -3523804942908186988, guid: 90a3b589953e2034487df8aea7e0d65f,
+    type: 2}
   m_audioClip: {fileID: 8300000, guid: 745c7b78bbe68f64482be4de1a0a22e4, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0
@@ -15775,14 +15776,14 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_Interpolate: 2
+  m_SleepingMode: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!58 &246920858
 CircleCollider2D:
@@ -15793,7 +15794,7 @@ CircleCollider2D:
   m_GameObject: {fileID: 9148340609074320578}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 4369ec32ed5a4ca41b3e7bb4b6ee6590, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0

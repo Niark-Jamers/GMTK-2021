@@ -24,6 +24,7 @@ public class CameraManager : MonoBehaviour
     {
         instance.noise.m_AmplitudeGain = amplitude;
 
+        instance.StopCoroutine(UpdateAmplitude());
         instance.StartCoroutine(UpdateAmplitude());
 
         IEnumerator UpdateAmplitude()
@@ -35,6 +36,8 @@ public class CameraManager : MonoBehaviour
                 yield return new WaitForEndOfFrame();
             }
         }
+
+        instance.noise.m_AmplitudeGain = 0;
     }
 
     void Update()
