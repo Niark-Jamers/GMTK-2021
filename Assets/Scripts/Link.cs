@@ -52,20 +52,18 @@ public class Link : MonoBehaviour
     GradientColorKey[] ck = new GradientColorKey[2];
     GradientAlphaKey[] ak = new GradientAlphaKey[2];
 
-    float subSpeedMinX;
-    float subSpeedMinY;
-    float subSpeedMaxX;
-    float subSpeedMaxY;
-
-    float subSpeedDamp;
+    float subSpeedDrag;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
-
-        subSpeedDamp = psSub.limitVelocityOverLifetime.drag.constant;
-        audioSource = gameObject.AddComponent<AudioSource>();
+        subSpeedDrag = psSub.limitVelocityOverLifetime.drag.constant;
+        Debug.Log(subSpeedDrag);
+        audioSource = gameObject.GetComponent<AudioSource>();
+        if (audioSource == null)
+            audioSource = gameObject.AddComponent<AudioSource>();
+        
         audioSource.clip = vwoupvwoupClip;
         audioSource.loop = true;
         audioSource.volume = 0;
@@ -101,7 +99,7 @@ public class Link : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         UpdateHeat();
         heatBar.value = curHeat;
@@ -239,6 +237,11 @@ public class Link : MonoBehaviour
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 8);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
+            var tmp = psSub.limitVelocityOverLifetime;
+            var stmp = tmp.drag;
+            stmp.constant = subSpeedDrag /5;
+            tmp.drag = stmp;
+            // Debug.Log(psSub.limitVelocityOverLifetime.drag.constant);
             // var tmp = ps.velocityOverLifetime;
             // var mmtmp = tmp.x;
             // mmtmp.constantMin = subSpeedMinX * 10;
@@ -251,6 +254,10 @@ public class Link : MonoBehaviour
         {
             spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 2f);
             outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 2f);
+            var tmp = psSub.limitVelocityOverLifetime;
+            var stmp = tmp.drag;
+            stmp.constant = subSpeedDrag;
+            tmp.drag = stmp;
             // var tmp = ps.velocityOverLifetime;
             // var mmtmp = tmp.x;
             // mmtmp.constantMin = subSpeedMinX;

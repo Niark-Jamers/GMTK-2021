@@ -19,6 +19,10 @@ public class GUIManager : MonoBehaviour
     public Text textRoulette3;
     public bool pause;
 
+    public AudioClip clickClip;
+    public AudioClip openClip;
+    public AudioClip closeClip;
+
     public void Awake()
     {
         if (Instance == null) { Instance = this; } else { Destroy(this); }
@@ -31,6 +35,10 @@ public class GUIManager : MonoBehaviour
 
     public void Pause()
     {
+        if (pause)
+            AudioManager.PlayOnShot(closeClip);
+        else
+            AudioManager.PlayOnShot(openClip);
         pausePanel.SetActive(!pausePanel.activeSelf);
         if (Time.timeScale == 0) { Time.timeScale = 1; } else { Time.timeScale = 0; }
         pause = !pause;
@@ -45,6 +53,7 @@ public class GUIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
+            AudioManager.PlayOnShot(clickClip);
             Time.timeScale = 0;
             GameManager.Instance.PowerRoulette();
         }
@@ -60,6 +69,7 @@ public class GUIManager : MonoBehaviour
 
     public void RouletteChoice(int nb)
     {
+        AudioManager.PlayOnShot(clickClip);
         roulettePanel.SetActive(false);
         GameManager.Instance.AddNewPower(nb);
         Time.timeScale = 1;
