@@ -14663,6 +14663,7 @@ MonoBehaviour:
   outlineMaterial: {fileID: 2100000, guid: 47e6769dc337ff243b829a2d3f773b3c, type: 2}
   vwoupvwoupClip: {fileID: 8300000, guid: 745c7b78bbe68f64482be4de1a0a22e4, type: 3}
   overheatClip: {fileID: 8300000, guid: fbcf6eaa344ba8b44a4a26d69cda1331, type: 3}
+  hitClip: {fileID: 8300000, guid: 01f7ba58cf5258647813c9d953000be9, type: 3}
   bulletPrefab: {fileID: 1124802163566534960, guid: cd5a860ace987404a9320e5b4dd25850,
     type: 3}
   speed: 2
@@ -15501,6 +15502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  lifePoints: 3
   deathClip: {fileID: 8300000, guid: df42728461048e343a5352a05fb7b8e4, type: 3}
 --- !u!212 &3907685799790402765
 SpriteRenderer:

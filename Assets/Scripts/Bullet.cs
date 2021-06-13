@@ -229,7 +229,7 @@ public class Bullet : MonoBehaviour
             else
                 resetValue(Vector3.Reflect(direction, -other.contacts[0].normal));
         }
-        else if (other.gameObject.tag == "Wall")
+        else if (other.gameObject.tag == "Wall" || other.gameObject.tag == "Link")
         {
             Destroy(this.gameObject);
         }

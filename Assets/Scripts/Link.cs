@@ -26,6 +26,7 @@ public class Link : MonoBehaviour
     AudioSource audioSource;
     public AudioClip vwoupvwoupClip;
     public AudioClip overheatClip;
+    public AudioClip hitClip;
 
     LineRenderer line;
 
@@ -191,7 +192,7 @@ public class Link : MonoBehaviour
         {
             if (!linkActive)
             {
-                Die();
+                TakeHit();
             }
             col.gameObject.tag = "PlayerBullet";
             var r = col.gameObject.GetComponent<Rigidbody2D>();
@@ -214,9 +215,22 @@ public class Link : MonoBehaviour
         }
     }
 
-    public void Die()
+    public void TakeHit()
     {
-        StartCoroutine(Death());
+        int newHP = player.GetComponent<Player>().lifePoints--;
+        GUIManager.Instance.UpdateLife(newHP);
+
+
+        if (newHP == 0)
+        {
+            CameraManager.Shake(10, 0.6f);
+            StartCoroutine(Death());
+        }
+        else
+        {
+            CameraManager.Shake(4, 0.15f);
+            AudioManager.PlayOnShot(hitClip, 0.3f);
+        }
     }
 
     IEnumerator Death()

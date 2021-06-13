@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float speed = 1.0f;
 
+    public int lifePoints = 3;
+
     public AudioClip deathClip;
 
     Animator        animator;
@@ -52,7 +54,7 @@ public class Player : MonoBehaviour
 
         if (col.gameObject.tag == "EnemyBullet")
         {
-            FindObjectOfType<Link>().Die();
+            FindObjectOfType<Link>().TakeHit();
         }
     }
 

@@ -23,8 +23,15 @@ public class GUIManager : MonoBehaviour
     public AudioClip openClip;
     public AudioClip closeClip;
 
+    [Header("Hearts")]
+    public Image    heart1;
+    public Image    heart2;
+    public Image    heart3;
+    Color heartColor;
+
     public void Awake()
     {
+        heartColor = heart1.color;
         if (Instance == null) { Instance = this; } else { Destroy(this); }
     }
     public void SetLife(float lifeBetween01)
@@ -73,6 +80,13 @@ public class GUIManager : MonoBehaviour
         roulettePanel.SetActive(false);
         GameManager.Instance.AddNewPower(nb);
         Time.timeScale = 1;
+    }
+
+    public void UpdateLife(int hp)
+    {
+        heart3.color = hp > 2 ? heartColor : Color.black;
+        heart2.color = hp > 1 ? heartColor : Color.black;
+        heart1.color = hp > 0 ? heartColor : Color.black;
     }
 
     public void TastyTest()
