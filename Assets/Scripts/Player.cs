@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     Animator        animator;
     SpriteRenderer  spriteRenderer;
+    new Rigidbody2D     rigidbody2D;
     bool dead = false;
 
     // Start is called before the first frame update
@@ -17,16 +18,17 @@ public class Player : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
         // player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate ()
     {
         if (dead)
             return;
-        var movement = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0);
-        transform.position += movement * speed * Time.deltaTime;
+        var movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        rigidbody2D.MovePosition(rigidbody2D.position + movement * speed * Time.fixedDeltaTime);
 
         animator.SetFloat("MoveX", movement.x);
         animator.SetFloat("MoveY", movement.y);
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
 
     public void Die()
     {
+        rigidbody2D.isKinematic = true;
         dead = true;
         animator.SetTrigger("Death");
         AudioManager.PlayOnShot(deathClip);

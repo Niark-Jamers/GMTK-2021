@@ -1904,6 +1904,9 @@ MonoBehaviour:
   imageRoulette3: {fileID: 1345736080}
   textRoulette3: {fileID: 1570452982}
   pause: 0
+  clickClip: {fileID: 8300000, guid: 7a5704268ab51fb4184f8ef986cce13e, type: 3}
+  openClip: {fileID: 8300000, guid: da0bf24abfd6a6a48bd9d0b4afd50fba, type: 3}
+  closeClip: {fileID: 8300000, guid: 22542801513461144a8c22dfdc525e1e, type: 3}
 --- !u!1 &2365872396020215808
 GameObject:
   m_ObjectHideFlags: 0
