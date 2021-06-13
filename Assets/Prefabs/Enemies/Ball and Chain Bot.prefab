@@ -158,7 +158,10 @@ MonoBehaviour:
   aggro: 1
   aggroDistance: 10
   minPlayerDistance: 3
+  bulletFirePosition: {fileID: 0}
   fireDelay: 1
+  shootClip: {fileID: 8300000, guid: b2199ad43fc443042a1e7cf54e8169fe, type: 3}
+  deathClip: {fileID: 8300000, guid: b12ae9d5df32dc14a93eed51629faa40, type: 3}
 --- !u!58 &1352871270986061692
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -246,7 +249,7 @@ GameObject:
   - component: {fileID: 1352871271670212133}
   m_Layer: 0
   m_Name: Ball and Chain Bot
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

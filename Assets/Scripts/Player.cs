@@ -6,6 +6,8 @@ public class Player : MonoBehaviour
 {
     public float speed = 1.0f;
 
+    public AudioClip deathClip;
+
     Animator        animator;
     SpriteRenderer  spriteRenderer;
     bool dead = false;
@@ -37,6 +39,7 @@ public class Player : MonoBehaviour
     {
         dead = true;
         animator.SetTrigger("Death");
+        AudioManager.PlayOnShot(deathClip);
     }
 
     void OnCollisionEnter2D(Collision2D col)

@@ -20,8 +20,9 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LinkPSMat
-  m_Shader: {fileID: 4800000, guid: 05876dbd3c8155843a39e57057fdcda6, type: 3}
+  m_Name: Sprite Lit Ball
+  m_Shader: {fileID: -6465566751694194690, guid: c8c188245517129438069dceb4e496e1,
+    type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -32,6 +33,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - Texture2D_c86c5b14bab14bb7af3a4eeada4c0e86:
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -57,7 +62,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 10300, guid: 0000000000000000f000000000000000, type: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -117,7 +122,7 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 1.6603774, b: 1.6603774, a: 2}
+    - _Color: {r: 4.006511, g: 20.716595, b: 20.490782, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

@@ -144,6 +144,7 @@ MonoBehaviour:
   ice: {fileID: 1210040428}
   boom: {fileID: 3788683954017290272}
   laser: {fileID: 195916527911362530}
+  killVelocity: 0
   mod:
     laser: 0
     fire: 0

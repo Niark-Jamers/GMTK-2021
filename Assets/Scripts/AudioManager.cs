@@ -12,11 +12,15 @@ public class AudioManager : MonoBehaviour
     void Awake()
     {
         if (instance != null)
+        {
             Destroy(gameObject);
+            return;
+        }
         instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
-    public static void PlayOnShot(AudioClip clip, float volume)
+    public static void PlayOnShot(AudioClip clip, float volume = 1)
     {
         instance.sfxPlayer.PlayOneShot(clip, volume);
     }

@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6185655997816745937
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3734971394656442528}
+  m_Layer: 0
+  m_Name: FirePos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3734971394656442528
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6185655997816745937}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.04850006, y: -0.3085, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1017845732811073923}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2082422305801993981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -28,6 +58,11 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.39
       objectReference: {fileID: 0}
+    - target: {fileID: 1352871270986061693, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+        type: 3}
+      propertyPath: bulletFirePosition
+      value: 
+      objectReference: {fileID: 3734971394656442528}
     - target: {fileID: 1352871270986061695, guid: 4fc4069f953f9c0428b963cdd4a932b2,
         type: 3}
       propertyPath: m_Sprite
@@ -96,3 +131,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4fc4069f953f9c0428b963cdd4a932b2, type: 3}
+--- !u!4 &1017845732811073923 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1352871270986061694, guid: 4fc4069f953f9c0428b963cdd4a932b2,
+    type: 3}
+  m_PrefabInstance: {fileID: 2082422305801993981}
+  m_PrefabAsset: {fileID: 0}

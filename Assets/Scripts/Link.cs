@@ -15,12 +15,17 @@ public class Link : MonoBehaviour
     public float overheatSpeed = 1f;
 
     public ParticleSystem ps;
+    public ParticleSystem psSub;
     public Material spriteMaterial;
+    public Material outlineMaterial;
 
     private bool overHeating;
     //private BoxCollider2D selfCollider;
     GameObject player;
 
+    AudioSource audioSource;
+    public AudioClip vwoupvwoupClip;
+    public AudioClip overheatClip;
 
     LineRenderer line;
 
@@ -29,8 +34,6 @@ public class Link : MonoBehaviour
     public float multiShotStep = 15;
 
     bool dead = false;
-
-    Color baseColor = new Color(0, 216, 255);
 
     [System.Serializable]
     public struct power
@@ -43,15 +46,31 @@ public class Link : MonoBehaviour
     [SerializeField]
     public power p = new power();
 
+    public Gradient gg;
+
     Gradient g = new Gradient();
     GradientColorKey[] ck = new GradientColorKey[2];
     GradientAlphaKey[] ak = new GradientAlphaKey[2];
+
+    float subSpeedMinX;
+    float subSpeedMinY;
+    float subSpeedMaxX;
+    float subSpeedMaxY;
+
+    float subSpeedDamp;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         // selfCollider = gameObject.GetComponent<BoxCollider2D>();
-        // line = GetComponent<LineRenderer>();
+
+        subSpeedDamp = psSub.limitVelocityOverLifetime.drag.constant;
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.clip = vwoupvwoupClip;
+        audioSource.loop = true;
+        audioSource.volume = 0;
+        audioSource.Play();
+
     }
 
     Bullet.modifier SetMods(Bullet.modifier tmod)
@@ -108,6 +127,13 @@ public class Link : MonoBehaviour
         g.SetKeys(ck, ak);
     }
 
+    Color Slurp(Color c1, Color c2, float t)
+    {
+        return new Color(c1.r * (1 - t) + c2.r * t,
+        c1.g * (1 - t) + c2.g * t,
+        c1.b * (1 - t) + c2.b * t);
+    }
+
     void UpdateHeat()
     {
         if (Input.GetKey(KeyCode.Mouse0) && !overHeating)
@@ -119,6 +145,7 @@ public class Link : MonoBehaviour
                 if (curHeat >= 100)
                 {
                     overHeating = true;
+                    AudioManager.PlayOnShot(overheatClip);
                     EnableLink(false);
                 }
             }
@@ -147,8 +174,13 @@ public class Link : MonoBehaviour
             }
         }
         var tmp = ps.colorOverLifetime;
-        ModifyGradient(Color.Lerp(Color.cyan, Color.red, curHeat / 100));
+        ModifyGradient(gg.Evaluate(curHeat / 100));
         tmp.color = g;
+
+        if (curHeat > 0 && !overHeating)
+            audioSource.volume = curHeat / 100.0f;
+        else
+            audioSource.volume = 0;
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -205,11 +237,27 @@ public class Link : MonoBehaviour
     {
         if (value)
         {
-            spriteMaterial.SetColor("_Color", new Color(8f, 8f, 8f));
+            spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 8);
+            outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
+            // var tmp = ps.velocityOverLifetime;
+            // var mmtmp = tmp.x;
+            // mmtmp.constantMin = subSpeedMinX * 10;
+            // mmtmp.constantMax = subSpeedMaxX * 10;
+            // mmtmp = tmp.y;
+            // mmtmp.constantMin = subSpeedMinY * 10;
+            // mmtmp.constantMax = subSpeedMaxY * 10;
         }
         else
         {
-            spriteMaterial.SetColor("_Color", new Color(2, 2, 2));
+            spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 2f);
+            outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 2f);
+            // var tmp = ps.velocityOverLifetime;
+            // var mmtmp = tmp.x;
+            // mmtmp.constantMin = subSpeedMinX;
+            // mmtmp.constantMax = subSpeedMaxX;
+            // mmtmp = tmp.y;
+            // mmtmp.constantMin = subSpeedMinY;
+            // mmtmp.constantMax = subSpeedMaxY;
         }
 
         linkActive = value;
