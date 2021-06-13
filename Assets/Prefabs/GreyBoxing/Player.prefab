@@ -14670,13 +14670,13 @@ MonoBehaviour:
   multiShotStep: 15
   p:
     bMod:
-      laser: 1
-      fire: 1
-      ice: 1
-      zigzag: 1
-      explosion: 1
-      bounce: 1
-    multiShot: 3
+      laser: 0
+      fire: 0
+      ice: 0
+      zigzag: 0
+      explosion: 0
+      bounce: 0
+    multiShot: 1
   gg:
     serializedVersion: 2
     key0: {r: 0, g: 1, b: 1, a: 1}
@@ -15504,6 +15504,7 @@ MonoBehaviour:
   speed: 10
   lifePoints: 3
   deathClip: {fileID: 8300000, guid: df42728461048e343a5352a05fb7b8e4, type: 3}
+  freeMovements: 0
 --- !u!212 &3907685799790402765
 SpriteRenderer:
   m_ObjectHideFlags: 0

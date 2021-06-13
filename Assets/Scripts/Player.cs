@@ -15,6 +15,8 @@ public class Player : MonoBehaviour
     new Rigidbody2D     rigidbody2D;
     bool dead = false;
 
+    public bool freeMovements = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,7 +29,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate ()
     {
-        if (dead)
+        if (dead || freeMovements)
             return;
         var movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         rigidbody2D.MovePosition(rigidbody2D.position + movement * speed * Time.fixedDeltaTime);
