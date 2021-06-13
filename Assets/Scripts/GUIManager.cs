@@ -19,6 +19,10 @@ public class GUIManager : MonoBehaviour
     public Text textRoulette3;
     public bool pause;
 
+    public Image itemImage1;
+    public Image itemImage2;
+    public Image itemImage3;
+
     public AudioClip clickClip;
     public AudioClip openClip;
     public AudioClip closeClip;
@@ -60,23 +64,27 @@ public class GUIManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.KeypadPlus))
         {
-            AudioManager.PlayOnShot(clickClip);
             Time.timeScale = 0;
             GameManager.Instance.PowerRoulette();
         }
     }
 
-    public void StartRoulette(List<string> choices)
+    public void StartRoulette(List<GameManager.GUIPowers> choices)
     {
-        textRoulette1.text = choices[1];
-        textRoulette2.text = choices[2];
-        textRoulette3.text = choices[3];
+        AudioManager.PlayOnShot(openClip);
+        textRoulette1.text = choices[1].name;
+        textRoulette2.text = choices[2].name;
+        textRoulette3.text = choices[3].name;
+        itemImage1.sprite = choices[1].image;
+        itemImage2.sprite = choices[2].image;
+        itemImage3.sprite = choices[3].image;
         roulettePanel.SetActive(true);
     }
 
     public void RouletteChoice(int nb)
     {
         AudioManager.PlayOnShot(clickClip);
+        FindObjectOfType<Player>().freeMovements = false;
         roulettePanel.SetActive(false);
         GameManager.Instance.AddNewPower(nb);
         Time.timeScale = 1;
