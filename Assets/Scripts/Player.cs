@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     Animator        animator;
     SpriteRenderer  spriteRenderer;
     new Rigidbody2D     rigidbody2D;
-    bool dead = false;
+    public bool dead = false;
 
     public bool freeMovements = false;
 
