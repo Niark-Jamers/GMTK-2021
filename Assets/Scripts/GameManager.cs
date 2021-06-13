@@ -64,7 +64,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void PowerRoulette()
-    { 
+    {
+        Time.timeScale = 0;
         FindObjectOfType<Player>().freeMovements = true;
         roulette = new List<GUIPowers>();
         tmpAllPowerList = (allPowerList).ToList();
