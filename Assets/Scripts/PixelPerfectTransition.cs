@@ -51,7 +51,6 @@ public class PixelPerfectTransition : MonoBehaviour
         while (Time.time - t < time)
         {
             float i01 = (Time.time - t) / time;
-            Debug.Log(i01);
 
             float level = Mathf.Clamp(Mathf.Lerp(p, 1, i01 + offset), 1, p);
             perfectCamera.refResolutionX = (int)(x / level);
