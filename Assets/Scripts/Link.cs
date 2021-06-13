@@ -99,7 +99,7 @@ public class Link : MonoBehaviour
             b.sr = GetComponent<SpriteRenderer>();
             b.noMulti = true;
             b.protecDown = false;
-            b.resetValue(tmp * speed, SetMods(tmod));
+            b.resetValue(tmp * speed * GameManager.Instance.bulletSpeedMultiplier, SetMods(tmod));
             Debug.DrawRay(c.point, tmp, Color.blue, 1f);
         }
     }
@@ -196,7 +196,7 @@ public class Link : MonoBehaviour
             Bullet tb = col.gameObject.GetComponent<Bullet>();
             if (tb.protecDown)
             {
-                Vector2 velocity = -col.contacts[0].normal * speed;
+                Vector2 velocity = -col.contacts[0].normal * speed * GameManager.Instance.bulletSpeedMultiplier;
                 if (tb.mod.bounce > 0)
                 {
 
@@ -223,7 +223,7 @@ public class Link : MonoBehaviour
                 col.gameObject.tag = "PlayerBullet";
                 var r = col.gameObject.GetComponent<Rigidbody2D>();
                 Bullet tb = col.gameObject.GetComponent<Bullet>();
-                Vector2 velocity = -col.contacts[0].normal * speed;
+                Vector2 velocity = -col.contacts[0].normal * speed * GameManager.Instance.bulletSpeedMultiplier;
                 Bullet.modifier tmod = tb.mod;
                 if (tb.noMulti == false)
                 {

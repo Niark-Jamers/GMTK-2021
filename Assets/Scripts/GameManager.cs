@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     string curScene;
     int sceneNumber;
 
+    public float bulletSpeedMultiplier = 1;
+    public float aggroZoneMultiplier = 1;
+
     public enum Mods
     {
         laser,
@@ -99,11 +102,16 @@ public class GameManager : MonoBehaviour
 
     public void NextLevel(bool newGamePlus = false)
     {
+        sceneNumber++;
+
         if (sceneNumber >= sceneList.Length)
         {
             if (newGamePlus)
             {
-                // TODO: DO STUFF
+                sceneNumber = 2;
+                bulletSpeedMultiplier += 0.5f;
+                aggroZoneMultiplier += 0.5f;
+                SceneManager.LoadScene(sceneList[sceneNumber]);
             }
             else
             {
@@ -113,7 +121,7 @@ public class GameManager : MonoBehaviour
             return;
         }
 
-        SceneManager.LoadScene(sceneList[sceneNumber + 1]);
+        SceneManager.LoadScene(sceneList[sceneNumber]);
     }
 
     public event System.Action newPowerAdded;
