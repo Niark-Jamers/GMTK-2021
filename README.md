@@ -11,3 +11,4 @@ https://mounirtohami.itch.io/pixel-art-gui-elements
 https://penusbmic.itch.io/
 https://www.fesliyanstudios.com/royalty-free-music/downloads-c/8-bit-music/6
 https://freesound.org/people/jalastram/sounds/317764/
+https://assetstore.unity.com/packages/2d/gui/icons/spellbook-preface-111069
