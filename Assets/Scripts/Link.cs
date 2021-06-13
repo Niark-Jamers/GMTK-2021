@@ -16,6 +16,7 @@ public class Link : MonoBehaviour
 
     public ParticleSystem ps;
     public Material spriteMaterial;
+    public Material outlineMaterial;
 
     private bool overHeating;
     //private BoxCollider2D selfCollider;
@@ -43,6 +44,8 @@ public class Link : MonoBehaviour
 
     [SerializeField]
     public power p = new power();
+
+    public Gradient gg;
 
     Gradient g = new Gradient();
     GradientColorKey[] ck = new GradientColorKey[2];
@@ -162,7 +165,7 @@ public class Link : MonoBehaviour
             }
         }
         var tmp = ps.colorOverLifetime;
-        ModifyGradient(Slurp(Color.cyan, Color.red, curHeat / 100));
+        ModifyGradient(gg.Evaluate(curHeat / 100));
         tmp.color = g;
 
         if (curHeat > 0 && !overHeating)
@@ -225,11 +228,13 @@ public class Link : MonoBehaviour
     {
         if (value)
         {
-            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 8);
+            spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 8);
+            outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 8);
         }
         else
         {
-            spriteMaterial.SetColor("_Color", Slurp(Color.cyan, Color.red, curHeat / 100) * 2f);
+            spriteMaterial.SetColor("_Color", gg.Evaluate(curHeat / 100) * 2f);
+            outlineMaterial.SetColor("_OutlineColor", gg.Evaluate(curHeat / 100) * 2f);
         }
 
         linkActive = value;
