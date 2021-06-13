@@ -61,4 +61,14 @@ public class PowerBall : MonoBehaviour
 
         // transform.position = new Vector3(p.x, p.y, transform.position.z);
     }
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (player.GetComponent<Player>().dead)
+            return;
+
+        if (col.gameObject.tag == "EnemyBullet")
+        {
+            FindObjectOfType<Link>().TakeHit();
+        }
+    }
 }

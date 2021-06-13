@@ -20368,6 +20368,7 @@ MonoBehaviour:
   speed: 10
   lifePoints: 3
   deathClip: {fileID: 8300000, guid: df42728461048e343a5352a05fb7b8e4, type: 3}
+  dead: 0
   freeMovements: 0
 --- !u!212 &3907685799790402765
 SpriteRenderer:
@@ -20489,6 +20490,8 @@ GameObject:
   - component: {fileID: 6830457479920743996}
   - component: {fileID: 4611986293236396982}
   - component: {fileID: 2059941230}
+  - component: {fileID: 246920857}
+  - component: {fileID: 246920858}
   m_Layer: 0
   m_Name: Ball
   m_TagString: PowerBall
@@ -20624,6 +20627,43 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!50 &246920857
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148340609074320578}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 4
+--- !u!58 &246920858
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9148340609074320578}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.00000011920929, y: -0.000000059604645}
+  serializedVersion: 2
+  m_Radius: 0.33
 --- !u!1001 &3741745645432079022
 PrefabInstance:
   m_ObjectHideFlags: 0
