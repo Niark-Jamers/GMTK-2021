@@ -124,7 +124,7 @@ public class Enemy : MonoBehaviour
             //    target = powerBall.transform.position;
             //}
             Vector3 targetDiff = target2 - target;
-            float distFromT1 = Random.Range(-0.2f, 1.2f);
+            float distFromT1 = Random.Range(0f, 0.3f);
             Vector3 trueTarget = target + targetDiff * distFromT1;
 
             var t = bulletFirePosition != null ? bulletFirePosition.transform.position : transform.position;
